@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import json
+from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -12,6 +14,7 @@ from homeassistant.setup import async_setup_component
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components import vacuum_room_queue
+from custom_components.vacuum_room_queue.const import DOMAIN
 
 from .conftest import VACUUM, Vacuum
 
@@ -107,3 +110,13 @@ async def test_sensor_name_follows_language(
     state = hass.states.get(entity_id)
     assert state is not None
     assert state.name == name
+
+
+def test_listed_as_integration_not_helper() -> None:
+    """Helper-type entries are hidden on the integrations page (found in 0.2.0)."""
+    manifest = json.loads(
+        (
+            Path(__file__).parents[1] / "custom_components" / DOMAIN / "manifest.json"
+        ).read_text("utf-8")
+    )
+    assert manifest["integration_type"] == "service"

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1 – 2026-11-19
+
+- Behoben: Die Integration erschien nicht unter *Einstellungen → Geräte & Dienste →
+  Integrationen*, sondern nur versteckt unter „Helfer“ (sie war als Helfer eingestuft).
+  Jetzt ist sie als Integration sichtbar, mit Icon und „Konfigurieren“; bestehende
+  Einträge, Entitäten und Raumreihenfolgen bleiben erhalten
+
 ## 0.2.0 – 2026-11-19
 
 - Eigenes Icon für die Integration (`brand/`), statt des Platzhalters in Home Assistant
