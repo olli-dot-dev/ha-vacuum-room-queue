@@ -1,0 +1,255 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Wybierz odkurzacz",
+        "description": "Tworzy kolejkę pomieszczeń dla tego odkurzacza oraz kartę panelu do jej obsługi.",
+        "data": {
+          "vacuum": "Odkurzacz"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Pomieszczenia",
+        "description": "Pomieszczenia pochodzą z przypisania obszarów odkurzacza (encja odkurzacza → ustawienia → przypisz obszary do segmentów). Opcjonalnie możesz ograniczyć i uporządkować pomieszczenia oferowane na karcie; pozostaw puste, aby użyć wszystkich przypisanych.",
+        "data": {
+          "areas": "Oferowane pomieszczenia"
+        }
+      },
+      "rooms_script": {
+        "title": "Skrypt i pomieszczenia",
+        "description": "Home Assistant nie może wysłać tego odkurzacza bezpośrednio do jednego pomieszczenia, dlatego robi to skrypt: jest uruchamiany raz na pomieszczenie ze zmiennymi `area_id`, `area_name` i `vacuum_entity_id` i musi wysłać odkurzacz właśnie do tego pomieszczenia. Przykład w README.",
+        "data": {
+          "script": "Skrypt",
+          "areas": "Pomieszczenia"
+        }
+      },
+      "mapping_missing": {
+        "title": "Pomieszczenia jeszcze nieprzypisane",
+        "description": "{vacuum} potrafi sprzątać pojedyncze obszary, ale żaden z jego segmentów nie jest jeszcze przypisany do obszaru Home Assistant, więc kolejka nie miałaby pomieszczeń.\n\nOtwórz encję odkurzacza → ustawienia → przypisz obszary do segmentów, przypisz segmenty, a następnie wybierz **Sprawdź ponownie**.",
+        "menu_options": {
+          "recheck": "Sprawdź ponownie",
+          "use_script": "Zamiast tego użyj własnego skryptu dla każdego pomieszczenia"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Pomieszczenia jeszcze bez nazw",
+        "description": "{vacuum} potrafi sprzątać pojedyncze obszary, ale żaden z jego segmentów nie jest jeszcze przypisany do obszaru Home Assistant. Segmenty mają tylko numery, więc w oknie przypisywania nie byłoby widać, który segment jest którym pomieszczeniem.\n\n1. Nazwij pomieszczenia w aplikacji odkurzacza (Valetudo: interfejs webowy → mapa → edytuj segmenty).\n2. Otwórz encję odkurzacza → ustawienia → przypisz obszary do segmentów i przypisz je.\n3. Wybierz **Sprawdź ponownie**.",
+        "menu_options": {
+          "recheck": "Sprawdź ponownie",
+          "use_script": "Zamiast tego użyj własnego skryptu dla każdego pomieszczenia"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Wybierz co najmniej jedno pomieszczenie.",
+      "unmapped_areas": "Nieprzypisane do segmentu odkurzacza: {areas}. Najpierw je przypisz (encja odkurzacza → ustawienia) albo usuń je tutaj."
+    },
+    "abort": {
+      "already_configured": "Ten odkurzacz ma już kolejkę pomieszczeń."
+    },
+    "create_entry": {
+      "reload_browser": "Gotowe. Dodano też kartę panelu **Vacuum Room Queue** – odśwież raz tę stronę przeglądarki (lub aplikację), aby się pojawiła, w przeciwnym razie panel pokaże błąd konfiguracji."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Jak odkurzacz trafia do pomieszczenia",
+        "description": "**Bezpośrednio (zalecane):** Home Assistant wysyła odkurzacz prosto do pomieszczenia. Wymaga odkurzacza, który to obsługuje i którego segmenty są przypisane do obszarów.\n\n**Własnym skryptem:** dla odkurzaczy, które tego nie potrafią – piszesz skrypt, który wysyła odkurzacz do jednego pomieszczenia.",
+        "data": {
+          "method": "Metoda"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Pomieszczenia",
+        "description": "Pomieszczenia pochodzą z przypisania obszarów odkurzacza (encja odkurzacza → ustawienia → przypisz obszary do segmentów). Opcjonalnie możesz ograniczyć i uporządkować pomieszczenia oferowane na karcie; pozostaw puste, aby użyć wszystkich przypisanych.",
+        "data": {
+          "areas": "Oferowane pomieszczenia",
+          "start_timeout": "Czas oczekiwania na start"
+        },
+        "data_description": {
+          "start_timeout": "Ile czasu odkurzacz może potrzebować na rozpoczęcie sprzątania po wysłaniu do pomieszczenia, zanim karta zgłosi „nie rozpoczął”. Stacje, które najpierw myją lub suszą mopy, potrzebują na to kilku minut."
+        }
+      },
+      "rooms_script": {
+        "title": "Skrypt i pomieszczenia",
+        "description": "Skrypt jest uruchamiany raz na pomieszczenie ze zmiennymi `area_id`, `area_name` i `vacuum_entity_id` i musi wysłać odkurzacz właśnie do tego jednego pomieszczenia. Przykład w README.",
+        "data": {
+          "script": "Skrypt",
+          "areas": "Pomieszczenia",
+          "start_timeout": "Czas oczekiwania na start"
+        },
+        "data_description": {
+          "start_timeout": "Ile czasu odkurzacz może potrzebować na rozpoczęcie sprzątania po wysłaniu do pomieszczenia, zanim karta zgłosi „nie rozpoczął”. Stacje, które najpierw myją lub suszą mopy, potrzebują na to kilku minut."
+        }
+      },
+      "mapping_missing": {
+        "title": "Pomieszczenia jeszcze nieprzypisane",
+        "description": "{vacuum} potrafi sprzątać pojedyncze obszary, ale żaden z jego segmentów nie jest jeszcze przypisany do obszaru Home Assistant, więc kolejka nie miałaby pomieszczeń.\n\nOtwórz encję odkurzacza → ustawienia → przypisz obszary do segmentów, przypisz segmenty, a następnie wybierz **Sprawdź ponownie**.",
+        "menu_options": {
+          "recheck": "Sprawdź ponownie",
+          "use_script": "Zamiast tego użyj własnego skryptu dla każdego pomieszczenia"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Pomieszczenia jeszcze bez nazw",
+        "description": "{vacuum} potrafi sprzątać pojedyncze obszary, ale żaden z jego segmentów nie jest jeszcze przypisany do obszaru Home Assistant. Segmenty mają tylko numery, więc w oknie przypisywania nie byłoby widać, który segment jest którym pomieszczeniem.\n\n1. Nazwij pomieszczenia w aplikacji odkurzacza (Valetudo: interfejs webowy → mapa → edytuj segmenty).\n2. Otwórz encję odkurzacza → ustawienia → przypisz obszary do segmentów i przypisz je.\n3. Wybierz **Sprawdź ponownie**.",
+        "menu_options": {
+          "recheck": "Sprawdź ponownie",
+          "use_script": "Zamiast tego użyj własnego skryptu dla każdego pomieszczenia"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Wybierz co najmniej jedno pomieszczenie.",
+      "unmapped_areas": "Nieprzypisane do segmentu odkurzacza: {areas}. Najpierw je przypisz (encja odkurzacza → ustawienia) albo usuń je tutaj."
+    }
+  },
+  "selector": {
+    "method": {
+      "options": {
+        "clean_area": "Bezpośrednio (zalecane)",
+        "script": "Własnym skryptem"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "queue": {
+        "name": "Kolejka pomieszczeń",
+        "state": {
+          "idle": "Gotowa",
+          "running": "Sprzątanie",
+          "paused": "Wstrzymana",
+          "error": "Błąd"
+        }
+      },
+      "queue_without_device": {
+        "name": "{vacuum} Kolejka pomieszczeń",
+        "state": {
+          "idle": "Gotowa",
+          "running": "Sprzątanie",
+          "paused": "Wstrzymana",
+          "error": "Błąd"
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_area": {
+      "message": "To nie jest pomieszczenie tej kolejki: {areas}"
+    },
+    "unknown_queue": {
+      "message": "{entity_id} nie jest kolejką pomieszczeń ani odkurzaczem z kolejką pomieszczeń."
+    },
+    "queue_empty": {
+      "message": "Kolejka jest pusta, najpierw dodaj pomieszczenia."
+    }
+  },
+  "services": {
+    "set_queue": {
+      "name": "Ustaw kolejkę",
+      "description": "Zastępuje oczekujące pomieszczenia. Pomieszczenie może wystąpić kilka razy, aby posprzątać je więcej niż raz. Działa także podczas sprzątania.",
+      "fields": {
+        "entity_id": {
+          "name": "Kolejka",
+          "description": "Czujnik kolejki pomieszczeń lub jej odkurzacz."
+        },
+        "areas": {
+          "name": "Pomieszczenia",
+          "description": "Pomieszczenia w kolejności sprzątania."
+        }
+      }
+    },
+    "add_area": {
+      "name": "Dodaj pomieszczenie",
+      "description": "Dodaje pomieszczenie do kolejki. Pomieszczenie, które już jest w kolejce lub jest właśnie sprzątane, zostaje dodane jeszcze raz, więc zostanie posprzątane ponownie.",
+      "fields": {
+        "entity_id": {
+          "name": "Kolejka",
+          "description": "Czujnik kolejki pomieszczeń lub jej odkurzacz."
+        },
+        "area_id": {
+          "name": "Pomieszczenie",
+          "description": "Pomieszczenie."
+        },
+        "position": {
+          "name": "Pozycja",
+          "description": "0 = jako następne. Puste = na końcu."
+        }
+      }
+    },
+    "remove_area": {
+      "name": "Usuń pomieszczenie",
+      "description": "Usuwa pomieszczenie: wszystkie jego oczekujące wpisy, a jeśli jest właśnie sprzątane – pomija je. Z podaną pozycją usuwany jest tylko ten wpis.",
+      "fields": {
+        "entity_id": {
+          "name": "Kolejka",
+          "description": "Czujnik kolejki pomieszczeń lub jej odkurzacz."
+        },
+        "area_id": {
+          "name": "Pomieszczenie",
+          "description": "Pomieszczenie."
+        },
+        "position": {
+          "name": "Pozycja",
+          "description": "Usuń tylko wpis na tej pozycji (0 = następny)."
+        }
+      }
+    },
+    "start": {
+      "name": "Start",
+      "description": "Uruchamia lub wznawia kolejkę.",
+      "fields": {
+        "entity_id": {
+          "name": "Kolejka",
+          "description": "Czujnik kolejki pomieszczeń lub jej odkurzacz."
+        },
+        "areas": {
+          "name": "Pomieszczenia",
+          "description": "Opcjonalnie: zastępuje kolejkę przed startem."
+        }
+      }
+    },
+    "pause": {
+      "name": "Pauza",
+      "description": "Wstrzymuje odkurzacz.",
+      "fields": {
+        "entity_id": {
+          "name": "Kolejka",
+          "description": "Czujnik kolejki pomieszczeń lub jej odkurzacz."
+        }
+      }
+    },
+    "skip": {
+      "name": "Pomiń pomieszczenie",
+      "description": "Przechodzi do następnego pomieszczenia.",
+      "fields": {
+        "entity_id": {
+          "name": "Kolejka",
+          "description": "Czujnik kolejki pomieszczeń lub jej odkurzacz."
+        }
+      }
+    },
+    "stop": {
+      "name": "Zatrzymaj",
+      "description": "Odsyła odkurzacz do stacji; bieżące pomieszczenie wraca do kolejki.",
+      "fields": {
+        "entity_id": {
+          "name": "Kolejka",
+          "description": "Czujnik kolejki pomieszczeń lub jej odkurzacz."
+        }
+      }
+    },
+    "clear": {
+      "name": "Wyczyść kolejkę",
+      "description": "Usuwa wszystkie oczekujące pomieszczenia.",
+      "fields": {
+        "entity_id": {
+          "name": "Kolejka",
+          "description": "Czujnik kolejki pomieszczeń lub jej odkurzacz."
+        }
+      }
+    }
+  }
+}

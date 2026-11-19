@@ -1,0 +1,255 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Choose vacuum",
+        "description": "Creates a room queue for this vacuum and a dashboard card to control it.",
+        "data": {
+          "vacuum": "Vacuum"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Rooms",
+        "description": "Rooms come from the area mapping of the vacuum (vacuum entity → settings → map areas to segments). Optionally limit and order the rooms offered in the card; leave empty for all mapped rooms.",
+        "data": {
+          "areas": "Rooms offered"
+        }
+      },
+      "rooms_script": {
+        "title": "Script and rooms",
+        "description": "This vacuum can't be sent to a single room by Home Assistant directly, so a script does it: it is started once per room with the variables `area_id`, `area_name` and `vacuum_entity_id` and must send the vacuum to that room. Example in the README.",
+        "data": {
+          "script": "Script",
+          "areas": "Rooms"
+        }
+      },
+      "mapping_missing": {
+        "title": "Rooms not mapped yet",
+        "description": "{vacuum} can clean single areas, but none of its segments is mapped to a Home Assistant area yet, so there would be no rooms to queue.\n\nOpen the vacuum entity → settings → map areas to segments, assign the segments, then choose **Check again**.",
+        "menu_options": {
+          "recheck": "Check again",
+          "use_script": "Use an own script per room instead"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Rooms not named yet",
+        "description": "{vacuum} can clean single areas, but none of its segments is mapped to a Home Assistant area yet. Its segments only carry numbers, so the mapping dialog would not show which segment is which room.\n\n1. Name the rooms in the vacuum's own app (Valetudo: web interface → map → edit segments).\n2. Open the vacuum entity → settings → map areas to segments and assign them.\n3. Choose **Check again**.",
+        "menu_options": {
+          "recheck": "Check again",
+          "use_script": "Use an own script per room instead"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Choose at least one room.",
+      "unmapped_areas": "Not mapped to a segment of the vacuum: {areas}. Map them first (vacuum entity → settings) or remove them here."
+    },
+    "abort": {
+      "already_configured": "This vacuum already has a room queue."
+    },
+    "create_entry": {
+      "reload_browser": "Done. The dashboard card **Vacuum Room Queue** was added as well – reload this browser page once (or the app) so it shows up, otherwise the dashboard shows a configuration error."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "How the vacuum gets to a room",
+        "description": "**Directly (recommended):** Home Assistant sends the vacuum straight to the room. Needs a vacuum that supports this and whose segments are mapped to areas.\n\n**With an own script:** for vacuums that can't do this – you write a script that sends the vacuum to one room.",
+        "data": {
+          "method": "Method"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Rooms",
+        "description": "Rooms come from the area mapping of the vacuum (vacuum entity → settings → map areas to segments). Optionally limit and order the rooms offered in the card; leave empty for all mapped rooms.",
+        "data": {
+          "areas": "Rooms offered",
+          "start_timeout": "Wait for the start"
+        },
+        "data_description": {
+          "start_timeout": "How long the vacuum may take to start cleaning after it was sent to a room, before the card reports \"did not start\". Stations that wash or dry the mops first need a few minutes."
+        }
+      },
+      "rooms_script": {
+        "title": "Script and rooms",
+        "description": "The script is started once per room with the variables `area_id`, `area_name` and `vacuum_entity_id` and must send the vacuum to that one room. Example in the README.",
+        "data": {
+          "script": "Script",
+          "areas": "Rooms",
+          "start_timeout": "Wait for the start"
+        },
+        "data_description": {
+          "start_timeout": "How long the vacuum may take to start cleaning after it was sent to a room, before the card reports \"did not start\". Stations that wash or dry the mops first need a few minutes."
+        }
+      },
+      "mapping_missing": {
+        "title": "Rooms not mapped yet",
+        "description": "{vacuum} can clean single areas, but none of its segments is mapped to a Home Assistant area yet, so there would be no rooms to queue.\n\nOpen the vacuum entity → settings → map areas to segments, assign the segments, then choose **Check again**.",
+        "menu_options": {
+          "recheck": "Check again",
+          "use_script": "Use an own script per room instead"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Rooms not named yet",
+        "description": "{vacuum} can clean single areas, but none of its segments is mapped to a Home Assistant area yet. Its segments only carry numbers, so the mapping dialog would not show which segment is which room.\n\n1. Name the rooms in the vacuum's own app (Valetudo: web interface → map → edit segments).\n2. Open the vacuum entity → settings → map areas to segments and assign them.\n3. Choose **Check again**.",
+        "menu_options": {
+          "recheck": "Check again",
+          "use_script": "Use an own script per room instead"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Choose at least one room.",
+      "unmapped_areas": "Not mapped to a segment of the vacuum: {areas}. Map them first (vacuum entity → settings) or remove them here."
+    }
+  },
+  "selector": {
+    "method": {
+      "options": {
+        "clean_area": "Directly (recommended)",
+        "script": "With an own script"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "queue": {
+        "name": "Room queue",
+        "state": {
+          "idle": "Idle",
+          "running": "Cleaning",
+          "paused": "Paused",
+          "error": "Error"
+        }
+      },
+      "queue_without_device": {
+        "name": "{vacuum} Room queue",
+        "state": {
+          "idle": "Idle",
+          "running": "Cleaning",
+          "paused": "Paused",
+          "error": "Error"
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_area": {
+      "message": "Not a room of this queue: {areas}"
+    },
+    "unknown_queue": {
+      "message": "{entity_id} is not a room queue or a vacuum with a room queue."
+    },
+    "queue_empty": {
+      "message": "The queue is empty, add rooms first."
+    }
+  },
+  "services": {
+    "set_queue": {
+      "name": "Set queue",
+      "description": "Replaces the waiting rooms. A room may appear several times to clean it more than once. Works while the vacuum is cleaning.",
+      "fields": {
+        "entity_id": {
+          "name": "Queue",
+          "description": "Room queue sensor or its vacuum."
+        },
+        "areas": {
+          "name": "Rooms",
+          "description": "Rooms in cleaning order."
+        }
+      }
+    },
+    "add_area": {
+      "name": "Add room",
+      "description": "Adds a room to the queue. A room that is queued or being cleaned already is added once more, so it is cleaned again.",
+      "fields": {
+        "entity_id": {
+          "name": "Queue",
+          "description": "Room queue sensor or its vacuum."
+        },
+        "area_id": {
+          "name": "Room",
+          "description": "The room."
+        },
+        "position": {
+          "name": "Position",
+          "description": "0 = next. Empty = at the end."
+        }
+      }
+    },
+    "remove_area": {
+      "name": "Remove room",
+      "description": "Removes a room: all of its waiting entries, and skips it if it is being cleaned. With a position only that entry is removed.",
+      "fields": {
+        "entity_id": {
+          "name": "Queue",
+          "description": "Room queue sensor or its vacuum."
+        },
+        "area_id": {
+          "name": "Room",
+          "description": "The room."
+        },
+        "position": {
+          "name": "Position",
+          "description": "Only remove the entry at this position (0 = next)."
+        }
+      }
+    },
+    "start": {
+      "name": "Start",
+      "description": "Starts or resumes the queue.",
+      "fields": {
+        "entity_id": {
+          "name": "Queue",
+          "description": "Room queue sensor or its vacuum."
+        },
+        "areas": {
+          "name": "Rooms",
+          "description": "Optional: replaces the queue before starting."
+        }
+      }
+    },
+    "pause": {
+      "name": "Pause",
+      "description": "Pauses the vacuum.",
+      "fields": {
+        "entity_id": {
+          "name": "Queue",
+          "description": "Room queue sensor or its vacuum."
+        }
+      }
+    },
+    "skip": {
+      "name": "Skip room",
+      "description": "Goes on with the next room.",
+      "fields": {
+        "entity_id": {
+          "name": "Queue",
+          "description": "Room queue sensor or its vacuum."
+        }
+      }
+    },
+    "stop": {
+      "name": "Stop",
+      "description": "Sends the vacuum home; the current room goes back into the queue.",
+      "fields": {
+        "entity_id": {
+          "name": "Queue",
+          "description": "Room queue sensor or its vacuum."
+        }
+      }
+    },
+    "clear": {
+      "name": "Clear queue",
+      "description": "Removes all waiting rooms.",
+      "fields": {
+        "entity_id": {
+          "name": "Queue",
+          "description": "Room queue sensor or its vacuum."
+        }
+      }
+    }
+  }
+}

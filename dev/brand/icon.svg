@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Source of custom_components/vacuum_room_queue/brand/*.png (render: dev/brand/render.py) -->
+  <rect width="256" height="256" rx="52" fill="#18BCF2"/>
+  <!-- path of the vacuum to the first room -->
+  <path d="M72 132 C72 90 80 60 108 58" fill="none" stroke="#fff" stroke-width="7"
+        stroke-linecap="round" stroke-dasharray="1 13" opacity="0.9"/>
+  <!-- the room order -->
+  <g font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="20" text-anchor="middle">
+    <rect x="120" y="40" width="108" height="36" rx="18" fill="#fff"/>
+    <circle cx="138" cy="58" r="13" fill="#0B4F73"/><text x="138" y="65" fill="#fff">1</text>
+    <rect x="158" y="53" width="52" height="10" rx="5" fill="#0B4F73" opacity="0.35"/>
+    <rect x="120" y="88" width="108" height="36" rx="18" fill="#fff"/>
+    <circle cx="138" cy="106" r="13" fill="#0B4F73"/><text x="138" y="113" fill="#fff">2</text>
+    <rect x="158" y="101" width="40" height="10" rx="5" fill="#0B4F73" opacity="0.35"/>
+    <rect x="120" y="136" width="108" height="36" rx="18" fill="#fff"/>
+    <circle cx="138" cy="154" r="13" fill="#0B4F73"/><text x="138" y="161" fill="#fff">3</text>
+    <rect x="158" y="149" width="48" height="10" rx="5" fill="#0B4F73" opacity="0.35"/>
+  </g>
+  <!-- robot vacuum from above: body, bumper, lidar -->
+  <circle cx="72" cy="184" r="44" fill="#fff"/>
+  <path d="M41 166 A36 36 0 0 1 103 166" fill="none" stroke="#0B4F73" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="72" cy="178" r="12" fill="#0B4F73"/>
+  <circle cx="72" cy="206" r="5" fill="#18BCF2"/>
+</svg>

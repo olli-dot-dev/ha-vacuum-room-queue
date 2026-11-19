@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vacuum Room Queue – Dev</title>
+<!-- Standalone harness: open directly in a browser (or serve the repo root),
+     no Home Assistant needed. A fake `hass` plays the integration's
+     services, the fake robot needs 8 s per room. -->
+<style>
+  :root {
+    --primary-color: #03a9f4; --rgb-primary-color: 3, 169, 244; --text-primary-color: #fff;
+    --primary-text-color: #212121; --secondary-text-color: #727272; --divider-color: #e0e0e0;
+    --card-background-color: #fff; --secondary-background-color: #f0f0f0;
+    --error-color: #db4437; --warning-color: #ffa600; --success-color: #43a047;
+  }
+  body { font-family: Roboto, system-ui, sans-serif; background: #fafafa; color: var(--primary-text-color); margin: 0; padding: 24px; }
+  main { max-width: 420px; margin: 0 auto; }
+  ha-card { display: block; background: var(--card-background-color); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.15); }
+  ha-icon { display: inline-flex; width: 24px; height: 24px; align-items: center; justify-content: center; font-size: 16px; }
+  p { color: var(--secondary-text-color); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <vacuum-room-queue-card id="card"></vacuum-room-queue-card>
+  <p>Fake-Roboter: 8 s pro Raum. Reihenfolge per Griff ziehen, auch während er fährt.</p>
+</main>
+<script>
+  // The card waits for the HA frontend element before it registers.
+  customElements.define("home-assistant", class extends HTMLElement {});
+  // Minimal stand-in for HA's <ha-icon>.
+  const GLYPHS = { "robot-vacuum": "🤖", drag: "⠿", close: "✕", plus: "+", play: "▶", pause: "⏸",
+    "skip-next": "⏭", "home-import-outline": "⌂", "playlist-remove": "⌫", "alert-circle-outline": "!", repeat: "↻" };
+  customElements.define("ha-icon", class extends HTMLElement {
+    connectedCallback() { this.textContent = GLYPHS[(this.getAttribute("icon") || "").replace("mdi:", "")] || "•"; }
+  });
+
+  const LANG = new URLSearchParams(location.search).get("lang") || "de";
+  const ROOMS = [["kuche", "Küche"], ["wohnzimmer", "Wohnzimmer"], ["flur", "Flur"], ["bad", "Bad"], ["schlafzimmer", "Schlafzimmer"]];
+  const q = { status: "idle", current: null, queue: ["kuche", "flur", "bad"], done: [], doneAt: [], started: null, vacuum: "docked",
+    // A run from yesterday, so "Letzter Lauf" shows up right away.
+    previous: { started: new Date(Date.now() - 864e5 - 9e5).toISOString(),
+      rooms: [["wohnzimmer", 864e5 + 6e5], ["bad", 864e5]].map(([area, ago]) => ({ area, finished: new Date(Date.now() - ago).toISOString() })) } };
+  // Last cleaning per room: from yesterday's run, plus one three weeks ago.
+  const lastCleaned = { flur: new Date(Date.now() - 21 * 864e5).toISOString() };
+  for (const r of q.previous.rooms) lastCleaned[r.area] = r.finished;
+  const run = (started, done, doneAt) => ({ started, rooms: done.map((area, i) => ({ area, finished: doneAt[i] })) });
+  function archive() {
+    if (q.done.length) q.previous = run(q.started, q.done, q.doneAt);
+    q.done = []; q.doneAt = []; q.started = null;
+  }
+  let timer = null;
+
+  function next() {
+    clearTimeout(timer);
+    if (q.current) { q.done.push(q.current); const at = new Date().toISOString(); q.doneAt.push(at); lastCleaned[q.current] = at; }
+    q.current = q.queue.shift() || null;
+    q.status = q.current ? "running" : "idle";
+    q.vacuum = q.current ? "cleaning" : "returning";
+    if (q.current) timer = setTimeout(next, 8000);
+    publish();
+  }
+  const services = {
+    set_queue: (d) => { q.queue = [...d.areas]; },
+    add_area: (d) => { q.queue.splice(d.position ?? q.queue.length, 0, d.area_id); },
+    remove_area: (d) => {
+      if (d.position !== undefined) { if (q.queue[d.position] === d.area_id) q.queue.splice(d.position, 1); return; }
+      q.queue = q.queue.filter((a) => a !== d.area_id); if (d.area_id === q.current) services.skip();
+    },
+    start: () => { if (q.status === "paused") { q.status = "running"; q.vacuum = "cleaning"; timer = setTimeout(next, 4000); } else if (q.status === "idle") { archive(); q.started = new Date().toISOString(); next(); } },
+    pause: () => { clearTimeout(timer); q.status = "paused"; q.vacuum = "paused"; },
+    skip: () => { q.current = null; next(); },
+    stop: () => { clearTimeout(timer); if (q.current) q.queue.unshift(q.current); q.current = null; q.status = "idle"; q.vacuum = "returning"; },
+    clear: () => { q.queue = []; if (!q.current) archive(); },
+  };
+  const VAC_STATES = { docked: "Angedockt", cleaning: "Saugt", paused: "Pausiert", returning: "Kehrt zurück" };
+
+  function publish() {
+    const card = document.getElementById("card");
+    card.hass = {
+      // ?lang=fr etc. to try another language.
+      locale: { language: LANG },
+      callWS: async ({ type, language }) => {
+        // Stand-in for vacuum_room_queue/get_translations.
+        const lang = language.split("-")[0];
+        const url = (l) => `../custom_components/vacuum_room_queue/card_translations/${l}.json`;
+        let res = await fetch(url(lang));
+        if (!res.ok) res = await fetch(url("en"));
+        return { lang, strings: await res.json() };
+      },
+      formatEntityState: (s) => VAC_STATES[s.state] || s.state,
+      states: {
+        "sensor.robi_raumreihenfolge": {
+          entity_id: "sensor.robi_raumreihenfolge", state: q.status,
+          attributes: { friendly_name: "Robi Raumreihenfolge", vacuum_entity_id: "vacuum.robi", current_area: q.current,
+            queue: [...q.queue], done: [...q.done], error: null,
+            history: { current: run(q.started, q.done, q.doneAt), previous: q.previous }, last_cleaned: { ...lastCleaned }, rooms: ROOMS.map(([id, name]) => ({ id, name })) },
+        },
+        "vacuum.robi": { entity_id: "vacuum.robi", state: q.vacuum, attributes: { friendly_name: "Robi" } },
+      },
+      callService: async (domain, service, data) => {
+        console.log("callService", domain, service, JSON.stringify(data));
+        // Like a real round trip: the sensor update comes a moment later.
+        await new Promise((r) => setTimeout(r, 150));
+        services[service](data);
+        publish();
+      },
+    };
+  }
+
+  import("../custom_components/vacuum_room_queue/frontend/vacuum-room-queue-card.js").then(() => {
+    document.getElementById("card").setConfig({ entity: "sensor.robi_raumreihenfolge" });
+    publish();
+  });
+</script>
+</body>
+</html>

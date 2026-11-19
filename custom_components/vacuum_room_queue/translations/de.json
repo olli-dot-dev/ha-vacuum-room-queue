@@ -1,0 +1,255 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Saugroboter wählen",
+        "description": "Legt eine Raumreihenfolge für diesen Saugroboter an, steuerbar über eine eigene Dashboard-Karte.",
+        "data": {
+          "vacuum": "Saugroboter"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Räume",
+        "description": "Die Räume kommen aus der Bereichszuordnung des Saugroboters (Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen). Optional kannst du die in der Karte angebotenen Räume einschränken und sortieren; leer lassen für alle zugeordneten Räume.",
+        "data": {
+          "areas": "Angebotene Räume"
+        }
+      },
+      "rooms_script": {
+        "title": "Skript und Räume",
+        "description": "Dieser Saugroboter lässt sich von Home Assistant nicht direkt in einen einzelnen Raum schicken, deshalb übernimmt das ein Skript: Es wird pro Raum einmal gestartet, mit den Variablen `area_id`, `area_name` und `vacuum_entity_id`, und muss den Roboter in genau diesen Raum schicken. Beispiel in der README.",
+        "data": {
+          "script": "Skript",
+          "areas": "Räume"
+        }
+      },
+      "mapping_missing": {
+        "title": "Räume noch nicht zugeordnet",
+        "description": "{vacuum} kann einzelne Bereiche reinigen, aber noch keines seiner Segmente ist einem Home-Assistant-Bereich zugeordnet – es gäbe also keine Räume für die Raumreihenfolge.\n\nÖffne die Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen, ordne die Segmente zu und wähle dann **Erneut prüfen**.",
+        "menu_options": {
+          "recheck": "Erneut prüfen",
+          "use_script": "Stattdessen eigenes Skript pro Raum verwenden"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Räume noch nicht benannt",
+        "description": "{vacuum} kann einzelne Bereiche reinigen, aber noch keines seiner Segmente ist einem Home-Assistant-Bereich zugeordnet. Die Segmente haben nur Nummern – im Zuordnungsdialog wäre also nicht zu erkennen, welches Segment welcher Raum ist.\n\n1. Benenne die Räume in der App des Saugroboters (Valetudo: Weboberfläche → Karte → Segmente bearbeiten).\n2. Öffne die Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen und ordne sie zu.\n3. Wähle **Erneut prüfen**.",
+        "menu_options": {
+          "recheck": "Erneut prüfen",
+          "use_script": "Stattdessen eigenes Skript pro Raum verwenden"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Mindestens einen Raum auswählen.",
+      "unmapped_areas": "Keinem Segment des Saugroboters zugeordnet: {areas}. Erst zuordnen (Saugroboter-Entität → Einstellungen) oder hier entfernen."
+    },
+    "abort": {
+      "already_configured": "Für diesen Saugroboter gibt es schon eine Raumreihenfolge."
+    },
+    "create_entry": {
+      "reload_browser": "Fertig. Die Dashboard-Karte **Vacuum Room Queue** wurde mit eingerichtet – lade diese Browserseite (oder die App) einmal neu, damit sie verfügbar ist, sonst zeigt das Dashboard einen Konfigurationsfehler."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Wie kommt der Roboter in einen Raum?",
+        "description": "**Direkt (empfohlen):** Home Assistant schickt den Roboter selbst in den Raum. Dafür muss der Roboter das können und seine Segmente müssen den Bereichen zugeordnet sein.\n\n**Mit eigenem Skript:** für Roboter, die das nicht können – du schreibst ein Skript, das den Roboter in einen Raum schickt.",
+        "data": {
+          "method": "Methode"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Räume",
+        "description": "Die Räume kommen aus der Bereichszuordnung des Saugroboters (Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen). Optional kannst du die in der Karte angebotenen Räume einschränken und sortieren; leer lassen für alle zugeordneten Räume.",
+        "data": {
+          "areas": "Angebotene Räume",
+          "start_timeout": "Wartezeit bis zum Start"
+        },
+        "data_description": {
+          "start_timeout": "So lange darf der Roboter nach dem Befehl brauchen, bis er zu saugen beginnt, bevor die Karte „hat nicht angefangen“ meldet. Stationen, die erst die Mopps waschen oder trocknen, brauchen dafür einige Minuten."
+        }
+      },
+      "rooms_script": {
+        "title": "Skript und Räume",
+        "description": "Das Skript wird pro Raum einmal gestartet, mit den Variablen `area_id`, `area_name` und `vacuum_entity_id`, und muss den Saugroboter in genau diesen Raum schicken. Beispiel in der README.",
+        "data": {
+          "script": "Skript",
+          "areas": "Räume",
+          "start_timeout": "Wartezeit bis zum Start"
+        },
+        "data_description": {
+          "start_timeout": "So lange darf der Roboter nach dem Befehl brauchen, bis er zu saugen beginnt, bevor die Karte „hat nicht angefangen“ meldet. Stationen, die erst die Mopps waschen oder trocknen, brauchen dafür einige Minuten."
+        }
+      },
+      "mapping_missing": {
+        "title": "Räume noch nicht zugeordnet",
+        "description": "{vacuum} kann einzelne Bereiche reinigen, aber noch keines seiner Segmente ist einem Home-Assistant-Bereich zugeordnet – es gäbe also keine Räume für die Raumreihenfolge.\n\nÖffne die Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen, ordne die Segmente zu und wähle dann **Erneut prüfen**.",
+        "menu_options": {
+          "recheck": "Erneut prüfen",
+          "use_script": "Stattdessen eigenes Skript pro Raum verwenden"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Räume noch nicht benannt",
+        "description": "{vacuum} kann einzelne Bereiche reinigen, aber noch keines seiner Segmente ist einem Home-Assistant-Bereich zugeordnet. Die Segmente haben nur Nummern – im Zuordnungsdialog wäre also nicht zu erkennen, welches Segment welcher Raum ist.\n\n1. Benenne die Räume in der App des Saugroboters (Valetudo: Weboberfläche → Karte → Segmente bearbeiten).\n2. Öffne die Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen und ordne sie zu.\n3. Wähle **Erneut prüfen**.",
+        "menu_options": {
+          "recheck": "Erneut prüfen",
+          "use_script": "Stattdessen eigenes Skript pro Raum verwenden"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Mindestens einen Raum auswählen.",
+      "unmapped_areas": "Keinem Segment des Saugroboters zugeordnet: {areas}. Erst zuordnen (Saugroboter-Entität → Einstellungen) oder hier entfernen."
+    }
+  },
+  "selector": {
+    "method": {
+      "options": {
+        "clean_area": "Direkt (empfohlen)",
+        "script": "Mit eigenem Skript"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "queue": {
+        "name": "Raumreihenfolge",
+        "state": {
+          "idle": "Bereit",
+          "running": "Saugt",
+          "paused": "Pausiert",
+          "error": "Fehler"
+        }
+      },
+      "queue_without_device": {
+        "name": "{vacuum} Raumreihenfolge",
+        "state": {
+          "idle": "Bereit",
+          "running": "Saugt",
+          "paused": "Pausiert",
+          "error": "Fehler"
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_area": {
+      "message": "Kein Raum dieser Raumreihenfolge: {areas}"
+    },
+    "unknown_queue": {
+      "message": "{entity_id} ist keine Raumreihenfolge und kein Saugroboter mit Raumreihenfolge."
+    },
+    "queue_empty": {
+      "message": "Die Raumreihenfolge ist leer, erst Räume hinzufügen."
+    }
+  },
+  "services": {
+    "set_queue": {
+      "name": "Reihenfolge setzen",
+      "description": "Ersetzt die wartenden Räume. Ein Raum darf mehrfach vorkommen, dann wird er mehrfach gereinigt. Geht auch, während der Saugroboter fährt.",
+      "fields": {
+        "entity_id": {
+          "name": "Raumreihenfolge",
+          "description": "Sensor der Raumreihenfolge oder der zugehörige Saugroboter."
+        },
+        "areas": {
+          "name": "Räume",
+          "description": "Räume in der Reihenfolge, in der gesaugt wird."
+        }
+      }
+    },
+    "add_area": {
+      "name": "Raum hinzufügen",
+      "description": "Fügt einen Raum hinzu. Steht er schon in der Raumreihenfolge oder wird gerade gereinigt, kommt er ein weiteres Mal dazu.",
+      "fields": {
+        "entity_id": {
+          "name": "Raumreihenfolge",
+          "description": "Sensor der Raumreihenfolge oder der zugehörige Saugroboter."
+        },
+        "area_id": {
+          "name": "Raum",
+          "description": "Der Raum."
+        },
+        "position": {
+          "name": "Position",
+          "description": "0 = als Nächstes. Leer = ans Ende."
+        }
+      }
+    },
+    "remove_area": {
+      "name": "Raum entfernen",
+      "description": "Entfernt einen Raum: alle seine wartenden Einträge, und überspringt ihn, falls er gerade gereinigt wird. Mit Position nur diesen einen Eintrag.",
+      "fields": {
+        "entity_id": {
+          "name": "Raumreihenfolge",
+          "description": "Sensor der Raumreihenfolge oder der zugehörige Saugroboter."
+        },
+        "area_id": {
+          "name": "Raum",
+          "description": "Der Raum."
+        },
+        "position": {
+          "name": "Position",
+          "description": "Nur den Eintrag an dieser Position entfernen (0 = als Nächstes)."
+        }
+      }
+    },
+    "start": {
+      "name": "Starten",
+      "description": "Startet die Raumreihenfolge oder setzt sie fort.",
+      "fields": {
+        "entity_id": {
+          "name": "Raumreihenfolge",
+          "description": "Sensor der Raumreihenfolge oder der zugehörige Saugroboter."
+        },
+        "areas": {
+          "name": "Räume",
+          "description": "Optional: ersetzt vorher die Raumreihenfolge."
+        }
+      }
+    },
+    "pause": {
+      "name": "Pausieren",
+      "description": "Pausiert den Saugroboter.",
+      "fields": {
+        "entity_id": {
+          "name": "Raumreihenfolge",
+          "description": "Sensor der Raumreihenfolge oder der zugehörige Saugroboter."
+        }
+      }
+    },
+    "skip": {
+      "name": "Raum überspringen",
+      "description": "Macht mit dem nächsten Raum weiter.",
+      "fields": {
+        "entity_id": {
+          "name": "Raumreihenfolge",
+          "description": "Sensor der Raumreihenfolge oder der zugehörige Saugroboter."
+        }
+      }
+    },
+    "stop": {
+      "name": "Stoppen",
+      "description": "Schickt den Saugroboter zur Station; der aktuelle Raum kommt zurück an den Anfang der Raumreihenfolge.",
+      "fields": {
+        "entity_id": {
+          "name": "Raumreihenfolge",
+          "description": "Sensor der Raumreihenfolge oder der zugehörige Saugroboter."
+        }
+      }
+    },
+    "clear": {
+      "name": "Raumreihenfolge leeren",
+      "description": "Entfernt alle wartenden Räume.",
+      "fields": {
+        "entity_id": {
+          "name": "Raumreihenfolge",
+          "description": "Sensor der Raumreihenfolge oder der zugehörige Saugroboter."
+        }
+      }
+    }
+  }
+}

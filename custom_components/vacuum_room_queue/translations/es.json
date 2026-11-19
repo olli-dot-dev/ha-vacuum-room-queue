@@ -1,0 +1,255 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Elegir aspiradora",
+        "description": "Crea una cola de habitaciones para esta aspiradora y una tarjeta del panel para controlarla.",
+        "data": {
+          "vacuum": "Aspiradora"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Habitaciones",
+        "description": "Las habitaciones proceden de la asignación de áreas de la aspiradora (entidad de la aspiradora → ajustes → asignar áreas a segmentos). Opcionalmente, limita y ordena las habitaciones que ofrece la tarjeta; déjalo vacío para todas las habitaciones asignadas.",
+        "data": {
+          "areas": "Habitaciones ofrecidas"
+        }
+      },
+      "rooms_script": {
+        "title": "Script y habitaciones",
+        "description": "Home Assistant no puede enviar esta aspiradora directamente a una sola habitación, así que lo hace un script: se ejecuta una vez por habitación con las variables `area_id`, `area_name` y `vacuum_entity_id` y debe enviar la aspiradora a esa habitación. Ejemplo en el README.",
+        "data": {
+          "script": "Script",
+          "areas": "Habitaciones"
+        }
+      },
+      "mapping_missing": {
+        "title": "Habitaciones aún sin asignar",
+        "description": "{vacuum} puede limpiar áreas individuales, pero ninguno de sus segmentos está asignado todavía a un área de Home Assistant, así que no habría habitaciones para la cola.\n\nAbre la entidad de la aspiradora → ajustes → asignar áreas a segmentos, asigna los segmentos y elige **Comprobar de nuevo**.",
+        "menu_options": {
+          "recheck": "Comprobar de nuevo",
+          "use_script": "Usar en su lugar un script propio por habitación"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Habitaciones aún sin nombre",
+        "description": "{vacuum} puede limpiar áreas individuales, pero ninguno de sus segmentos está asignado todavía a un área de Home Assistant. Sus segmentos solo tienen números, así que en el diálogo de asignación no se vería qué segmento es cada habitación.\n\n1. Pon nombre a las habitaciones en la app de la aspiradora (Valetudo: interfaz web → mapa → editar segmentos).\n2. Abre la entidad de la aspiradora → ajustes → asignar áreas a segmentos y asígnalas.\n3. Elige **Comprobar de nuevo**.",
+        "menu_options": {
+          "recheck": "Comprobar de nuevo",
+          "use_script": "Usar en su lugar un script propio por habitación"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Elige al menos una habitación.",
+      "unmapped_areas": "Sin asignar a un segmento de la aspiradora: {areas}. Asígnalas primero (entidad de la aspiradora → ajustes) o quítalas aquí."
+    },
+    "abort": {
+      "already_configured": "Esta aspiradora ya tiene una cola de habitaciones."
+    },
+    "create_entry": {
+      "reload_browser": "Listo. También se ha añadido la tarjeta del panel **Vacuum Room Queue**: recarga una vez esta página del navegador (o la app) para que aparezca; si no, el panel mostrará un error de configuración."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Cómo llega la aspiradora a una habitación",
+        "description": "**Directamente (recomendado):** Home Assistant envía la aspiradora directamente a la habitación. Requiere una aspiradora compatible cuyos segmentos estén asignados a áreas.\n\n**Con un script propio:** para aspiradoras que no lo admiten: escribes un script que envía la aspiradora a una habitación.",
+        "data": {
+          "method": "Método"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Habitaciones",
+        "description": "Las habitaciones proceden de la asignación de áreas de la aspiradora (entidad de la aspiradora → ajustes → asignar áreas a segmentos). Opcionalmente, limita y ordena las habitaciones que ofrece la tarjeta; déjalo vacío para todas las habitaciones asignadas.",
+        "data": {
+          "areas": "Habitaciones ofrecidas",
+          "start_timeout": "Espera hasta el inicio"
+        },
+        "data_description": {
+          "start_timeout": "Cuánto puede tardar la aspiradora en empezar a limpiar tras enviarla a una habitación antes de que la tarjeta indique «no ha empezado». Las estaciones que primero lavan o secan las mopas necesitan unos minutos."
+        }
+      },
+      "rooms_script": {
+        "title": "Script y habitaciones",
+        "description": "El script se ejecuta una vez por habitación con las variables `area_id`, `area_name` y `vacuum_entity_id` y debe enviar la aspiradora solo a esa habitación. Ejemplo en el README.",
+        "data": {
+          "script": "Script",
+          "areas": "Habitaciones",
+          "start_timeout": "Espera hasta el inicio"
+        },
+        "data_description": {
+          "start_timeout": "Cuánto puede tardar la aspiradora en empezar a limpiar tras enviarla a una habitación antes de que la tarjeta indique «no ha empezado». Las estaciones que primero lavan o secan las mopas necesitan unos minutos."
+        }
+      },
+      "mapping_missing": {
+        "title": "Habitaciones aún sin asignar",
+        "description": "{vacuum} puede limpiar áreas individuales, pero ninguno de sus segmentos está asignado todavía a un área de Home Assistant, así que no habría habitaciones para la cola.\n\nAbre la entidad de la aspiradora → ajustes → asignar áreas a segmentos, asigna los segmentos y elige **Comprobar de nuevo**.",
+        "menu_options": {
+          "recheck": "Comprobar de nuevo",
+          "use_script": "Usar en su lugar un script propio por habitación"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Habitaciones aún sin nombre",
+        "description": "{vacuum} puede limpiar áreas individuales, pero ninguno de sus segmentos está asignado todavía a un área de Home Assistant. Sus segmentos solo tienen números, así que en el diálogo de asignación no se vería qué segmento es cada habitación.\n\n1. Pon nombre a las habitaciones en la app de la aspiradora (Valetudo: interfaz web → mapa → editar segmentos).\n2. Abre la entidad de la aspiradora → ajustes → asignar áreas a segmentos y asígnalas.\n3. Elige **Comprobar de nuevo**.",
+        "menu_options": {
+          "recheck": "Comprobar de nuevo",
+          "use_script": "Usar en su lugar un script propio por habitación"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Elige al menos una habitación.",
+      "unmapped_areas": "Sin asignar a un segmento de la aspiradora: {areas}. Asígnalas primero (entidad de la aspiradora → ajustes) o quítalas aquí."
+    }
+  },
+  "selector": {
+    "method": {
+      "options": {
+        "clean_area": "Directamente (recomendado)",
+        "script": "Con un script propio"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "queue": {
+        "name": "Cola de habitaciones",
+        "state": {
+          "idle": "Lista",
+          "running": "Limpiando",
+          "paused": "En pausa",
+          "error": "Error"
+        }
+      },
+      "queue_without_device": {
+        "name": "{vacuum} Cola de habitaciones",
+        "state": {
+          "idle": "Lista",
+          "running": "Limpiando",
+          "paused": "En pausa",
+          "error": "Error"
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_area": {
+      "message": "No es una habitación de esta cola: {areas}"
+    },
+    "unknown_queue": {
+      "message": "{entity_id} no es una cola de habitaciones ni una aspiradora con cola de habitaciones."
+    },
+    "queue_empty": {
+      "message": "La cola está vacía; añade primero habitaciones."
+    }
+  },
+  "services": {
+    "set_queue": {
+      "name": "Establecer cola",
+      "description": "Sustituye las habitaciones en espera. Una habitación puede aparecer varias veces para limpiarla más de una vez. Funciona mientras la aspiradora limpia.",
+      "fields": {
+        "entity_id": {
+          "name": "Cola",
+          "description": "Sensor de la cola de habitaciones o su aspiradora."
+        },
+        "areas": {
+          "name": "Habitaciones",
+          "description": "Habitaciones en orden de limpieza."
+        }
+      }
+    },
+    "add_area": {
+      "name": "Añadir habitación",
+      "description": "Añade una habitación a la cola. Una habitación que ya está en la cola o se está limpiando se añade otra vez, así que se vuelve a limpiar.",
+      "fields": {
+        "entity_id": {
+          "name": "Cola",
+          "description": "Sensor de la cola de habitaciones o su aspiradora."
+        },
+        "area_id": {
+          "name": "Habitación",
+          "description": "La habitación."
+        },
+        "position": {
+          "name": "Posición",
+          "description": "0 = la siguiente. Vacío = al final."
+        }
+      }
+    },
+    "remove_area": {
+      "name": "Quitar habitación",
+      "description": "Quita una habitación: todas sus entradas en espera, y la salta si se está limpiando. Con una posición solo se quita esa entrada.",
+      "fields": {
+        "entity_id": {
+          "name": "Cola",
+          "description": "Sensor de la cola de habitaciones o su aspiradora."
+        },
+        "area_id": {
+          "name": "Habitación",
+          "description": "La habitación."
+        },
+        "position": {
+          "name": "Posición",
+          "description": "Quitar solo la entrada en esta posición (0 = la siguiente)."
+        }
+      }
+    },
+    "start": {
+      "name": "Iniciar",
+      "description": "Inicia o reanuda la cola.",
+      "fields": {
+        "entity_id": {
+          "name": "Cola",
+          "description": "Sensor de la cola de habitaciones o su aspiradora."
+        },
+        "areas": {
+          "name": "Habitaciones",
+          "description": "Opcional: sustituye la cola antes de iniciar."
+        }
+      }
+    },
+    "pause": {
+      "name": "Pausa",
+      "description": "Pausa la aspiradora.",
+      "fields": {
+        "entity_id": {
+          "name": "Cola",
+          "description": "Sensor de la cola de habitaciones o su aspiradora."
+        }
+      }
+    },
+    "skip": {
+      "name": "Saltar habitación",
+      "description": "Continúa con la siguiente habitación.",
+      "fields": {
+        "entity_id": {
+          "name": "Cola",
+          "description": "Sensor de la cola de habitaciones o su aspiradora."
+        }
+      }
+    },
+    "stop": {
+      "name": "Detener",
+      "description": "Envía la aspiradora a la base; la habitación actual vuelve a la cola.",
+      "fields": {
+        "entity_id": {
+          "name": "Cola",
+          "description": "Sensor de la cola de habitaciones o su aspiradora."
+        }
+      }
+    },
+    "clear": {
+      "name": "Vaciar cola",
+      "description": "Quita todas las habitaciones en espera.",
+      "fields": {
+        "entity_id": {
+          "name": "Cola",
+          "description": "Sensor de la cola de habitaciones o su aspiradora."
+        }
+      }
+    }
+  }
+}

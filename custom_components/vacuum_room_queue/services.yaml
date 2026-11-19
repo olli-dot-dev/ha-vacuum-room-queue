@@ -1,0 +1,68 @@
+set_queue:
+  fields:
+    entity_id: &queue_entity
+      required: true
+      selector:
+        entity:
+          filter:
+            - integration: vacuum_room_queue
+            - domain: vacuum
+    areas:
+      required: true
+      selector:
+        area:
+          multiple: true
+          reorder: true
+
+add_area:
+  fields:
+    entity_id: *queue_entity
+    area_id:
+      required: true
+      selector:
+        area:
+    position:
+      selector:
+        number:
+          min: 0
+          max: 100
+          mode: box
+
+remove_area:
+  fields:
+    entity_id: *queue_entity
+    area_id:
+      required: true
+      selector:
+        area:
+    position:
+      selector:
+        number:
+          min: 0
+          max: 100
+          mode: box
+
+start:
+  fields:
+    entity_id: *queue_entity
+    areas:
+      selector:
+        area:
+          multiple: true
+          reorder: true
+
+pause:
+  fields:
+    entity_id: *queue_entity
+
+skip:
+  fields:
+    entity_id: *queue_entity
+
+stop:
+  fields:
+    entity_id: *queue_entity
+
+clear:
+  fields:
+    entity_id: *queue_entity

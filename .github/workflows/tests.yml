@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: ha-vacuum-room-queue
+      - uses: astral-sh/setup-uv@v6
+      - name: Install
+        working-directory: ha-vacuum-room-queue
+        run: uv sync --locked --python 3.14
+      - name: Ruff
+        working-directory: ha-vacuum-room-queue
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+      - name: Mypy
+        working-directory: ha-vacuum-room-queue
+        run: uv run mypy
+      - name: Pytest
+        working-directory: ha-vacuum-room-queue
+        run: uv run pytest

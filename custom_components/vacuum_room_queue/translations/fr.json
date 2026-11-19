@@ -1,0 +1,255 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Choisir l'aspirateur",
+        "description": "Crée une file de pièces pour cet aspirateur et une carte de tableau de bord pour la piloter.",
+        "data": {
+          "vacuum": "Aspirateur"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Pièces",
+        "description": "Les pièces proviennent de l'association des pièces de l'aspirateur (entité aspirateur → paramètres → associer les pièces aux segments). Vous pouvez limiter et ordonner les pièces proposées dans la carte ; laissez vide pour toutes les pièces associées.",
+        "data": {
+          "areas": "Pièces proposées"
+        }
+      },
+      "rooms_script": {
+        "title": "Script et pièces",
+        "description": "Home Assistant ne peut pas envoyer directement cet aspirateur dans une seule pièce, un script s'en charge donc : il est lancé une fois par pièce avec les variables `area_id`, `area_name` et `vacuum_entity_id` et doit envoyer l'aspirateur dans cette pièce. Exemple dans le README.",
+        "data": {
+          "script": "Script",
+          "areas": "Pièces"
+        }
+      },
+      "mapping_missing": {
+        "title": "Pièces pas encore associées",
+        "description": "{vacuum} peut nettoyer des pièces individuelles, mais aucun de ses segments n'est encore associé à une pièce de Home Assistant : il n'y aurait donc aucune pièce à mettre en file.\n\nOuvrez l'entité aspirateur → paramètres → associer les pièces aux segments, associez les segments, puis choisissez **Vérifier à nouveau**.",
+        "menu_options": {
+          "recheck": "Vérifier à nouveau",
+          "use_script": "Utiliser plutôt un script propre par pièce"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Pièces pas encore nommées",
+        "description": "{vacuum} peut nettoyer des pièces individuelles, mais aucun de ses segments n'est encore associé à une pièce de Home Assistant. Ses segments ne portent que des numéros : la fenêtre d'association ne permettrait pas de savoir quel segment correspond à quelle pièce.\n\n1. Nommez les pièces dans l'application de l'aspirateur (Valetudo : interface web → carte → modifier les segments).\n2. Ouvrez l'entité aspirateur → paramètres → associer les pièces aux segments, et associez-les.\n3. Choisissez **Vérifier à nouveau**.",
+        "menu_options": {
+          "recheck": "Vérifier à nouveau",
+          "use_script": "Utiliser plutôt un script propre par pièce"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Choisissez au moins une pièce.",
+      "unmapped_areas": "Non associées à un segment de l'aspirateur : {areas}. Associez-les d'abord (entité aspirateur → paramètres) ou retirez-les ici."
+    },
+    "abort": {
+      "already_configured": "Cet aspirateur a déjà une file de pièces."
+    },
+    "create_entry": {
+      "reload_browser": "Terminé. La carte de tableau de bord **Vacuum Room Queue** a aussi été ajoutée – rechargez une fois cette page du navigateur (ou l'application) pour qu'elle apparaisse, sinon le tableau de bord affiche une erreur de configuration."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Comment l'aspirateur se rend dans une pièce",
+        "description": "**Directement (recommandé) :** Home Assistant envoie l'aspirateur directement dans la pièce. Nécessite un aspirateur compatible dont les segments sont associés aux pièces.\n\n**Avec un script propre :** pour les aspirateurs qui ne le permettent pas – vous écrivez un script qui envoie l'aspirateur dans une pièce.",
+        "data": {
+          "method": "Méthode"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Pièces",
+        "description": "Les pièces proviennent de l'association des pièces de l'aspirateur (entité aspirateur → paramètres → associer les pièces aux segments). Vous pouvez limiter et ordonner les pièces proposées dans la carte ; laissez vide pour toutes les pièces associées.",
+        "data": {
+          "areas": "Pièces proposées",
+          "start_timeout": "Délai de démarrage"
+        },
+        "data_description": {
+          "start_timeout": "Le temps dont l'aspirateur dispose pour commencer à nettoyer après l'envoi dans une pièce, avant que la carte n'indique « n'a pas démarré ». Les stations qui lavent ou sèchent d'abord les serpillières ont besoin de quelques minutes."
+        }
+      },
+      "rooms_script": {
+        "title": "Script et pièces",
+        "description": "Le script est lancé une fois par pièce avec les variables `area_id`, `area_name` et `vacuum_entity_id` et doit envoyer l'aspirateur dans cette seule pièce. Exemple dans le README.",
+        "data": {
+          "script": "Script",
+          "areas": "Pièces",
+          "start_timeout": "Délai de démarrage"
+        },
+        "data_description": {
+          "start_timeout": "Le temps dont l'aspirateur dispose pour commencer à nettoyer après l'envoi dans une pièce, avant que la carte n'indique « n'a pas démarré ». Les stations qui lavent ou sèchent d'abord les serpillières ont besoin de quelques minutes."
+        }
+      },
+      "mapping_missing": {
+        "title": "Pièces pas encore associées",
+        "description": "{vacuum} peut nettoyer des pièces individuelles, mais aucun de ses segments n'est encore associé à une pièce de Home Assistant : il n'y aurait donc aucune pièce à mettre en file.\n\nOuvrez l'entité aspirateur → paramètres → associer les pièces aux segments, associez les segments, puis choisissez **Vérifier à nouveau**.",
+        "menu_options": {
+          "recheck": "Vérifier à nouveau",
+          "use_script": "Utiliser plutôt un script propre par pièce"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Pièces pas encore nommées",
+        "description": "{vacuum} peut nettoyer des pièces individuelles, mais aucun de ses segments n'est encore associé à une pièce de Home Assistant. Ses segments ne portent que des numéros : la fenêtre d'association ne permettrait pas de savoir quel segment correspond à quelle pièce.\n\n1. Nommez les pièces dans l'application de l'aspirateur (Valetudo : interface web → carte → modifier les segments).\n2. Ouvrez l'entité aspirateur → paramètres → associer les pièces aux segments, et associez-les.\n3. Choisissez **Vérifier à nouveau**.",
+        "menu_options": {
+          "recheck": "Vérifier à nouveau",
+          "use_script": "Utiliser plutôt un script propre par pièce"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Choisissez au moins une pièce.",
+      "unmapped_areas": "Non associées à un segment de l'aspirateur : {areas}. Associez-les d'abord (entité aspirateur → paramètres) ou retirez-les ici."
+    }
+  },
+  "selector": {
+    "method": {
+      "options": {
+        "clean_area": "Directement (recommandé)",
+        "script": "Avec un script propre"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "queue": {
+        "name": "File des pièces",
+        "state": {
+          "idle": "Prêt",
+          "running": "Nettoyage",
+          "paused": "En pause",
+          "error": "Erreur"
+        }
+      },
+      "queue_without_device": {
+        "name": "{vacuum} File des pièces",
+        "state": {
+          "idle": "Prêt",
+          "running": "Nettoyage",
+          "paused": "En pause",
+          "error": "Erreur"
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_area": {
+      "message": "Pas une pièce de cette file : {areas}"
+    },
+    "unknown_queue": {
+      "message": "{entity_id} n'est ni une file de pièces ni un aspirateur avec une file de pièces."
+    },
+    "queue_empty": {
+      "message": "La file est vide, ajoutez d'abord des pièces."
+    }
+  },
+  "services": {
+    "set_queue": {
+      "name": "Définir la file",
+      "description": "Remplace les pièces en attente. Une pièce peut figurer plusieurs fois pour être nettoyée plusieurs fois. Fonctionne pendant que l'aspirateur nettoie.",
+      "fields": {
+        "entity_id": {
+          "name": "File",
+          "description": "Capteur de la file de pièces ou son aspirateur."
+        },
+        "areas": {
+          "name": "Pièces",
+          "description": "Pièces dans l'ordre de nettoyage."
+        }
+      }
+    },
+    "add_area": {
+      "name": "Ajouter une pièce",
+      "description": "Ajoute une pièce à la file. Une pièce déjà en file ou en cours de nettoyage est ajoutée une fois de plus et sera donc nettoyée à nouveau.",
+      "fields": {
+        "entity_id": {
+          "name": "File",
+          "description": "Capteur de la file de pièces ou son aspirateur."
+        },
+        "area_id": {
+          "name": "Pièce",
+          "description": "La pièce."
+        },
+        "position": {
+          "name": "Position",
+          "description": "0 = la suivante. Vide = à la fin."
+        }
+      }
+    },
+    "remove_area": {
+      "name": "Retirer une pièce",
+      "description": "Retire une pièce : toutes ses entrées en attente, et la saute si elle est en cours de nettoyage. Avec une position, seule cette entrée est retirée.",
+      "fields": {
+        "entity_id": {
+          "name": "File",
+          "description": "Capteur de la file de pièces ou son aspirateur."
+        },
+        "area_id": {
+          "name": "Pièce",
+          "description": "La pièce."
+        },
+        "position": {
+          "name": "Position",
+          "description": "Retirer uniquement l'entrée à cette position (0 = la suivante)."
+        }
+      }
+    },
+    "start": {
+      "name": "Démarrer",
+      "description": "Démarre ou reprend la file.",
+      "fields": {
+        "entity_id": {
+          "name": "File",
+          "description": "Capteur de la file de pièces ou son aspirateur."
+        },
+        "areas": {
+          "name": "Pièces",
+          "description": "Facultatif : remplace la file avant de démarrer."
+        }
+      }
+    },
+    "pause": {
+      "name": "Pause",
+      "description": "Met l'aspirateur en pause.",
+      "fields": {
+        "entity_id": {
+          "name": "File",
+          "description": "Capteur de la file de pièces ou son aspirateur."
+        }
+      }
+    },
+    "skip": {
+      "name": "Passer la pièce",
+      "description": "Passe à la pièce suivante.",
+      "fields": {
+        "entity_id": {
+          "name": "File",
+          "description": "Capteur de la file de pièces ou son aspirateur."
+        }
+      }
+    },
+    "stop": {
+      "name": "Arrêter",
+      "description": "Renvoie l'aspirateur à sa base ; la pièce en cours retourne dans la file.",
+      "fields": {
+        "entity_id": {
+          "name": "File",
+          "description": "Capteur de la file de pièces ou son aspirateur."
+        }
+      }
+    },
+    "clear": {
+      "name": "Vider la file",
+      "description": "Retire toutes les pièces en attente.",
+      "fields": {
+        "entity_id": {
+          "name": "File",
+          "description": "Capteur de la file de pièces ou son aspirateur."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Stofzuiger kiezen",
+        "description": "Maakt een kamerwachtrij voor deze stofzuiger en een dashboardkaart om die te bedienen.",
+        "data": {
+          "vacuum": "Stofzuiger"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Kamers",
+        "description": "De kamers komen uit de ruimtetoewijzing van de stofzuiger (stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen). Beperk en sorteer optioneel de kamers die de kaart aanbiedt; leeg laten voor alle toegewezen kamers.",
+        "data": {
+          "areas": "Aangeboden kamers"
+        }
+      },
+      "rooms_script": {
+        "title": "Script en kamers",
+        "description": "Home Assistant kan deze stofzuiger niet rechtstreeks naar één kamer sturen, daarom doet een script dat: het wordt per kamer één keer gestart met de variabelen `area_id`, `area_name` en `vacuum_entity_id` en moet de stofzuiger naar precies die kamer sturen. Voorbeeld in de README.",
+        "data": {
+          "script": "Script",
+          "areas": "Kamers"
+        }
+      },
+      "mapping_missing": {
+        "title": "Kamers nog niet toegewezen",
+        "description": "{vacuum} kan afzonderlijke ruimtes reinigen, maar nog geen enkel segment is aan een Home Assistant-ruimte toegewezen – er zouden dus geen kamers voor de wachtrij zijn.\n\nOpen de stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen, wijs de segmenten toe en kies daarna **Opnieuw controleren**.",
+        "menu_options": {
+          "recheck": "Opnieuw controleren",
+          "use_script": "In plaats daarvan een eigen script per kamer gebruiken"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Kamers nog niet benoemd",
+        "description": "{vacuum} kan afzonderlijke ruimtes reinigen, maar nog geen enkel segment is aan een Home Assistant-ruimte toegewezen. De segmenten hebben alleen nummers, dus in het toewijzingsvenster zou je niet zien welk segment welke kamer is.\n\n1. Geef de kamers een naam in de app van de stofzuiger (Valetudo: webinterface → kaart → segmenten bewerken).\n2. Open de stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen en wijs ze toe.\n3. Kies **Opnieuw controleren**.",
+        "menu_options": {
+          "recheck": "Opnieuw controleren",
+          "use_script": "In plaats daarvan een eigen script per kamer gebruiken"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Kies minstens één kamer.",
+      "unmapped_areas": "Niet aan een segment van de stofzuiger toegewezen: {areas}. Wijs ze eerst toe (stofzuigerentiteit → instellingen) of verwijder ze hier."
+    },
+    "abort": {
+      "already_configured": "Deze stofzuiger heeft al een kamerwachtrij."
+    },
+    "create_entry": {
+      "reload_browser": "Klaar. De dashboardkaart **Vacuum Room Queue** is ook toegevoegd – laad deze browserpagina (of de app) één keer opnieuw zodat ze verschijnt, anders toont het dashboard een configuratiefout."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Hoe de stofzuiger in een kamer komt",
+        "description": "**Rechtstreeks (aanbevolen):** Home Assistant stuurt de stofzuiger direct naar de kamer. Vereist een stofzuiger die dit ondersteunt en waarvan de segmenten aan ruimtes zijn toegewezen.\n\n**Met een eigen script:** voor stofzuigers die dat niet kunnen – je schrijft een script dat de stofzuiger naar één kamer stuurt.",
+        "data": {
+          "method": "Methode"
+        }
+      },
+      "rooms_clean_area": {
+        "title": "Kamers",
+        "description": "De kamers komen uit de ruimtetoewijzing van de stofzuiger (stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen). Beperk en sorteer optioneel de kamers die de kaart aanbiedt; leeg laten voor alle toegewezen kamers.",
+        "data": {
+          "areas": "Aangeboden kamers",
+          "start_timeout": "Wachttijd tot de start"
+        },
+        "data_description": {
+          "start_timeout": "Hoe lang de stofzuiger na het commando mag doen over het starten, voordat de kaart ‘is niet gestart’ meldt. Stations die eerst de dweilen wassen of drogen, hebben daar een paar minuten voor nodig."
+        }
+      },
+      "rooms_script": {
+        "title": "Script en kamers",
+        "description": "Het script wordt per kamer één keer gestart met de variabelen `area_id`, `area_name` en `vacuum_entity_id` en moet de stofzuiger naar precies die ene kamer sturen. Voorbeeld in de README.",
+        "data": {
+          "script": "Script",
+          "areas": "Kamers",
+          "start_timeout": "Wachttijd tot de start"
+        },
+        "data_description": {
+          "start_timeout": "Hoe lang de stofzuiger na het commando mag doen over het starten, voordat de kaart ‘is niet gestart’ meldt. Stations die eerst de dweilen wassen of drogen, hebben daar een paar minuten voor nodig."
+        }
+      },
+      "mapping_missing": {
+        "title": "Kamers nog niet toegewezen",
+        "description": "{vacuum} kan afzonderlijke ruimtes reinigen, maar nog geen enkel segment is aan een Home Assistant-ruimte toegewezen – er zouden dus geen kamers voor de wachtrij zijn.\n\nOpen de stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen, wijs de segmenten toe en kies daarna **Opnieuw controleren**.",
+        "menu_options": {
+          "recheck": "Opnieuw controleren",
+          "use_script": "In plaats daarvan een eigen script per kamer gebruiken"
+        }
+      },
+      "mapping_unnamed": {
+        "title": "Kamers nog niet benoemd",
+        "description": "{vacuum} kan afzonderlijke ruimtes reinigen, maar nog geen enkel segment is aan een Home Assistant-ruimte toegewezen. De segmenten hebben alleen nummers, dus in het toewijzingsvenster zou je niet zien welk segment welke kamer is.\n\n1. Geef de kamers een naam in de app van de stofzuiger (Valetudo: webinterface → kaart → segmenten bewerken).\n2. Open de stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen en wijs ze toe.\n3. Kies **Opnieuw controleren**.",
+        "menu_options": {
+          "recheck": "Opnieuw controleren",
+          "use_script": "In plaats daarvan een eigen script per kamer gebruiken"
+        }
+      }
+    },
+    "error": {
+      "no_areas": "Kies minstens één kamer.",
+      "unmapped_areas": "Niet aan een segment van de stofzuiger toegewezen: {areas}. Wijs ze eerst toe (stofzuigerentiteit → instellingen) of verwijder ze hier."
+    }
+  },
+  "selector": {
+    "method": {
+      "options": {
+        "clean_area": "Rechtstreeks (aanbevolen)",
+        "script": "Met een eigen script"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "queue": {
+        "name": "Kamerwachtrij",
+        "state": {
+          "idle": "Gereed",
+          "running": "Bezig met reinigen",
+          "paused": "Gepauzeerd",
+          "error": "Fout"
+        }
+      },
+      "queue_without_device": {
+        "name": "{vacuum} Kamerwachtrij",
+        "state": {
+          "idle": "Gereed",
+          "running": "Bezig met reinigen",
+          "paused": "Gepauzeerd",
+          "error": "Fout"
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_area": {
+      "message": "Geen kamer van deze wachtrij: {areas}"
+    },
+    "unknown_queue": {
+      "message": "{entity_id} is geen kamerwachtrij en geen stofzuiger met een kamerwachtrij."
+    },
+    "queue_empty": {
+      "message": "De wachtrij is leeg, voeg eerst kamers toe."
+    }
+  },
+  "services": {
+    "set_queue": {
+      "name": "Wachtrij instellen",
+      "description": "Vervangt de wachtende kamers. Een kamer mag meerdere keren voorkomen om hem vaker te reinigen. Werkt ook terwijl de stofzuiger bezig is.",
+      "fields": {
+        "entity_id": {
+          "name": "Wachtrij",
+          "description": "Sensor van de kamerwachtrij of de bijbehorende stofzuiger."
+        },
+        "areas": {
+          "name": "Kamers",
+          "description": "Kamers in reinigingsvolgorde."
+        }
+      }
+    },
+    "add_area": {
+      "name": "Kamer toevoegen",
+      "description": "Voegt een kamer aan de wachtrij toe. Een kamer die al in de wachtrij staat of net wordt gereinigd, wordt nog een keer toegevoegd en dus opnieuw gereinigd.",
+      "fields": {
+        "entity_id": {
+          "name": "Wachtrij",
+          "description": "Sensor van de kamerwachtrij of de bijbehorende stofzuiger."
+        },
+        "area_id": {
+          "name": "Kamer",
+          "description": "De kamer."
+        },
+        "position": {
+          "name": "Positie",
+          "description": "0 = als volgende. Leeg = aan het einde."
+        }
+      }
+    },
+    "remove_area": {
+      "name": "Kamer verwijderen",
+      "description": "Verwijdert een kamer: alle wachtende vermeldingen ervan, en slaat hem over als hij net wordt gereinigd. Met een positie wordt alleen die vermelding verwijderd.",
+      "fields": {
+        "entity_id": {
+          "name": "Wachtrij",
+          "description": "Sensor van de kamerwachtrij of de bijbehorende stofzuiger."
+        },
+        "area_id": {
+          "name": "Kamer",
+          "description": "De kamer."
+        },
+        "position": {
+          "name": "Positie",
+          "description": "Alleen de vermelding op deze positie verwijderen (0 = volgende)."
+        }
+      }
+    },
+    "start": {
+      "name": "Starten",
+      "description": "Start of hervat de wachtrij.",
+      "fields": {
+        "entity_id": {
+          "name": "Wachtrij",
+          "description": "Sensor van de kamerwachtrij of de bijbehorende stofzuiger."
+        },
+        "areas": {
+          "name": "Kamers",
+          "description": "Optioneel: vervangt de wachtrij voor het starten."
+        }
+      }
+    },
+    "pause": {
+      "name": "Pauzeren",
+      "description": "Pauzeert de stofzuiger.",
+      "fields": {
+        "entity_id": {
+          "name": "Wachtrij",
+          "description": "Sensor van de kamerwachtrij of de bijbehorende stofzuiger."
+        }
+      }
+    },
+    "skip": {
+      "name": "Kamer overslaan",
+      "description": "Gaat verder met de volgende kamer.",
+      "fields": {
+        "entity_id": {
+          "name": "Wachtrij",
+          "description": "Sensor van de kamerwachtrij of de bijbehorende stofzuiger."
+        }
+      }
+    },
+    "stop": {
+      "name": "Stoppen",
+      "description": "Stuurt de stofzuiger naar het basisstation; de huidige kamer gaat terug in de wachtrij.",
+      "fields": {
+        "entity_id": {
+          "name": "Wachtrij",
+          "description": "Sensor van de kamerwachtrij of de bijbehorende stofzuiger."
+        }
+      }
+    },
+    "clear": {
+      "name": "Wachtrij legen",
+      "description": "Verwijdert alle wachtende kamers.",
+      "fields": {
+        "entity_id": {
+          "name": "Wachtrij",
+          "description": "Sensor van de kamerwachtrij of de bijbehorende stofzuiger."
+        }
+      }
+    }
+  }
+}

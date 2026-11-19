@@ -1,0 +1,9 @@
+{
+  "domain": "fake_vacuum",
+  "name": "Fake Vacuum (dev only)",
+  "codeowners": [],
+  "documentation": "https://github.com/olli-dot-dev/ha-vacuum-room-queue",
+  "iot_class": "local_push",
+  "requirements": [],
+  "version": "0.0.1"
+}

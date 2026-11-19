@@ -1,0 +1,25 @@
+{
+  "entity": {
+    "sensor": {
+      "queue": {
+        "default": "mdi:robot-vacuum",
+        "state": {
+          "idle": "mdi:robot-vacuum-off",
+          "running": "mdi:robot-vacuum",
+          "paused": "mdi:pause-circle-outline",
+          "error": "mdi:robot-vacuum-alert"
+        }
+      }
+    }
+  },
+  "services": {
+    "set_queue": { "service": "mdi:format-list-numbered" },
+    "add_area": { "service": "mdi:playlist-plus" },
+    "remove_area": { "service": "mdi:playlist-minus" },
+    "start": { "service": "mdi:play" },
+    "pause": { "service": "mdi:pause" },
+    "skip": { "service": "mdi:skip-next" },
+    "stop": { "service": "mdi:home-import-outline" },
+    "clear": { "service": "mdi:playlist-remove" }
+  }
+}

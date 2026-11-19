@@ -1,0 +1,56 @@
+[project]
+name = "ha-vacuum-room-queue"
+version = "0.2.0"
+description = "Home Assistant integration: drag & drop room queue for robot vacuums"
+requires-python = ">=3.14.2"
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "pytest-homeassistant-custom-component==0.13.375",
+  "mypy>=1.10",
+  "ruff>=0.6",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+addopts = "--cov=custom_components.vacuum_room_queue --cov-report=term-missing"
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.mypy]
+python_version = "3.14"
+files = ["custom_components"]
+strict = true
+ignore_missing_imports = false
+
+[tool.ruff]
+target-version = "py314"
+line-length = 88
+# dev/ holds throwaway helpers for manual testing, not shipped.
+extend-exclude = ["dev"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "COM812",
+  "CPY001",
+  "D203",
+  "D213",
+  "EM101",
+  "EM102",
+  "TRY003",
+  "TC001", # Home Assistant style: runtime imports for annotations
+  "TC002",
+  "TC003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"custom_components/**" = ["ARG001", "ARG002", "ARG004"] # fixed HA signatures
+"tests/**" = ["S101", "PLR2004", "D", "ANN401", "SLF001", "FBT001", "ARG001", "PLR0913", "PLR0917"]

@@ -1,0 +1,14 @@
+{
+  "domain": "vacuum_room_queue",
+  "name": "Vacuum Room Queue",
+  "after_dependencies": ["frontend", "http", "script"],
+  "codeowners": ["@olli-dot-dev"],
+  "config_flow": true,
+  "dependencies": ["lovelace", "vacuum"],
+  "documentation": "https://github.com/olli-dot-dev/ha-vacuum-room-queue",
+  "integration_type": "helper",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/olli-dot-dev/ha-vacuum-room-queue/issues",
+  "requirements": [],
+  "version": "0.2.0"
+}
