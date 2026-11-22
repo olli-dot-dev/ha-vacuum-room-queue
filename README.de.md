@@ -1,4 +1,12 @@
+<p align="center">
+  <img src="custom_components/vacuum_room_queue/brand/icon.png" width="96" alt="Vacuum Room Queue Logo">
+</p>
+
 # Vacuum Room Queue
+
+[![Marketplace](https://img.shields.io/badge/Marketplace-Custom-orange.svg)](https://hacs.xyz/docs/marketplace/)
+[![GitHub release](https://img.shields.io/github/v/release/olli-dot-dev/ha-vacuum-room-queue)](https://github.com/olli-dot-dev/ha-vacuum-room-queue/releases)
+![Maintenance](https://img.shields.io/maintenance/yes/2026.svg)
 
 [English](README.md) · **Deutsch**
 
@@ -6,6 +14,12 @@ Home-Assistant-Integration mit eigener Dashboard-Karte: Du legst per **Drag & Dr
 fest, in welcher Reihenfolge dein Saugroboter die Räume abfährt – und kannst die
 Reihenfolge **jederzeit ändern, Räume entfernen oder ergänzen, auch während er
 schon fährt**.
+
+Änderungen je Version: siehe [CHANGELOG.md](CHANGELOG.md).
+
+<p align="center">
+  <img src="assets/screenshot.png" width="420" alt="Vacuum-Room-Queue-Karte">
+</p>
 
 ## Wie es funktioniert
 
@@ -70,11 +84,23 @@ Bereichsreinigung), Home Assistant 2026.11:
 
 ## Installation
 
-### Via HACS
+### Marketplace (ab Home Assistant 2026.11)
 
-Als benutzerdefiniertes Repository hinzufügen
-(`https://github.com/olli-dot-dev/ha-vacuum-room-queue`, Kategorie „Integration“),
-„Vacuum Room Queue“ installieren und Home Assistant neu starten.
+Seit 2026.11 ist HACS als **Marketplace** fest in Home Assistant eingebaut.
+
+[![Repository im Marketplace deiner Home-Assistant-Instanz öffnen](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=olli-dot-dev&repository=https%3A%2F%2Fgithub.com%2Folli-dot-dev%2Fha-vacuum-room-queue)
+
+Auf den Button klicken oder das Repository von Hand hinzufügen:
+
+1. **Einstellungen → Marketplace** öffnen
+2. **Über Link hinzufügen** wählen und `https://github.com/olli-dot-dev/ha-vacuum-room-queue` einfügen
+3. **Vacuum Room Queue** öffnen und **Installieren** wählen
+
+Ein Neustart ist meist nicht nötig; fordert Home Assistant ihn unter
+**Einstellungen → System → Reparaturen** an, einmal neu starten.
+
+Unter Home Assistant 2026.10 mit HACS: **HACS → ⋮ → Benutzerdefinierte Repositories**,
+den Link oben mit Kategorie **Integration** hinzufügen, herunterladen, neu starten.
 
 ### Manuell
 

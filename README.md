@@ -1,10 +1,24 @@
+<p align="center">
+  <img src="custom_components/vacuum_room_queue/brand/icon.png" width="96" alt="Vacuum Room Queue logo">
+</p>
+
 # Vacuum Room Queue
+
+[![Marketplace](https://img.shields.io/badge/Marketplace-Custom-orange.svg)](https://hacs.xyz/docs/marketplace/)
+[![GitHub release](https://img.shields.io/github/v/release/olli-dot-dev/ha-vacuum-room-queue)](https://github.com/olli-dot-dev/ha-vacuum-room-queue/releases)
+![Maintenance](https://img.shields.io/maintenance/yes/2026.svg)
 
 **English** · [Deutsch](README.de.md)
 
 A Home Assistant integration with its own dashboard card: set the order in which your
 robot vacuum cleans the rooms by **drag & drop** – and **change it at any time, remove
 or add rooms, even while it is already cleaning**.
+
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
+
+<p align="center">
+  <img src="assets/screenshot.png" width="420" alt="Vacuum Room Queue card">
+</p>
 
 ## How it works
 
@@ -65,10 +79,23 @@ area cleaning), Home Assistant 2026.11:
 
 ## Installation
 
-### HACS
+### Marketplace (Home Assistant 2026.11 and newer)
 
-Add as a custom repository (`https://github.com/olli-dot-dev/ha-vacuum-room-queue`,
-category "Integration"), install "Vacuum Room Queue" and restart Home Assistant.
+Since 2026.11, HACS is built into Home Assistant as the **Marketplace**.
+
+[![Open your Home Assistant instance and open a repository in the Marketplace.](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=olli-dot-dev&repository=https%3A%2F%2Fgithub.com%2Folli-dot-dev%2Fha-vacuum-room-queue)
+
+Click the badge above, or add the repository by hand:
+
+1. Go to **Settings → Marketplace**
+2. Choose **Add from link** and paste `https://github.com/olli-dot-dev/ha-vacuum-room-queue`
+3. Open **Vacuum Room Queue** and click **Install**
+
+Usually no restart is needed; if Home Assistant asks for one under
+**Settings → System → Repairs**, restart once.
+
+On Home Assistant 2026.10 with HACS: **HACS → ⋮ → Custom repositories**, add the link
+above with category **Integration**, download, restart.
 
 ### Manual
 
