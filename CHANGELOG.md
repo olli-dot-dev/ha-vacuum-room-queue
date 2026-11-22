@@ -27,7 +27,7 @@
 - Stopp/Heimfahrt aus Home Assistant (Kachel, Automation, Sprachassistent) beendet den
   Lauf wie der Stopp-Knopf der Karte, statt als „Raum fertig“ den nächsten Raum zu
   schicken
-- README: am echten Dreame/Valetudo-Roboter getestet, Abschnitt „Stoppen“,
+- README: am echten Eureka/Valetudo-Roboter getestet, Abschnitt „Stoppen“,
   Sensor-Attribute, Optionen, Grenzen ergänzt
 - Kleine Historie in der Karte: erledigte Räume dieses Laufs mit Uhrzeit und darunter der
   letzte Lauf; neues Sensor-Attribut `history`, übersteht Neustarts
@@ -38,7 +38,7 @@
 - Behoben: ein erledigter Raum verschwand aus „Fertig“, solange derselbe Raum (per
   „Nochmal“) gerade wieder gesaugt wurde
 - Wartezeit bis zum Start in den Optionen einstellbar (1–60 Minuten), Standard von 5
-  auf 10 Minuten erhöht – eine Dreame-Station mit Valetudo wäscht vor dem Losfahren
+  auf 10 Minuten erhöht – eine Eureka-Station mit Valetudo wäscht vor dem Losfahren
   knapp 3 Minuten die Mopps
 - Erfolgsmeldung nach der Einrichtung weist darauf hin, die Browserseite neu zu laden –
   offene Tabs kennen die frisch registrierte Karte sonst nicht („Konfigurationsfehler“)

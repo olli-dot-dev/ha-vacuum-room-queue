@@ -38,7 +38,7 @@ STORAGE_VERSION: Final = 1
 DISPATCH_GRACE_SECONDS: Final = 20
 # A robot that has not reported "cleaning" this long after a room was sent
 # to it most likely refused the command. Stations that wash or dry the mops
-# first take a few minutes (a Dreame/Valetudo dock: ~3 min), so the default
+# first take a few minutes (a Eureka/Valetudo dock: ~3 min), so the default
 # is generous and users can change it in the options.
 DEFAULT_START_TIMEOUT_MINUTES: Final = 10
 START_TIMEOUT_RANGE_MINUTES: Final = (1, 60)

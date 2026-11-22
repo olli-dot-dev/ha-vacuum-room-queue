@@ -71,7 +71,7 @@ erst und schick ihn dann zur Station – oder leere vorher die Raumreihenfolge.
     (*Saugroboter-Entität → Einstellungen → Bereiche zuordnen*), oder
   - sich per **Skript** in einen einzelnen Raum schicken lässt (siehe unten).
 
-**Getestet** mit einem Dreame-Roboter mit Wisch-Station über **Valetudo** (MQTT, native
+**Getestet** mit einem Eureka-Roboter mit Wisch-Station über **Valetudo** (MQTT, native
 Bereichsreinigung), Home Assistant 2026.11:
 
 - Vor dem ersten Raum wäscht die Station knapp **3 Minuten** die Mopps; erst dann meldet

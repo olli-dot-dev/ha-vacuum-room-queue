@@ -66,7 +66,7 @@ home – or clear the queue beforehand.
     Assistant areas once (*vacuum entity → settings → map areas to segments*), or
   - can be sent to a single room by a **script** (see below).
 
-**Tested** with a Dreame vacuum with mop-washing dock via **Valetudo** (MQTT, native
+**Tested** with a Eureka vacuum with mop-washing dock via **Valetudo** (MQTT, native
 area cleaning), Home Assistant 2026.11:
 
 - Before the first room the dock washes the mops for almost **3 minutes**; only then
