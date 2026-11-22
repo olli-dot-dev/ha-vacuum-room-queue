@@ -313,3 +313,11 @@ uv run ruff check . && uv run mypy
 - `dev/fake_vacuum/` – ein Fake-Saugroboter mit Bereichsreinigung für eine
   Test-Instanz (`vacuum: [{platform: fake_vacuum}]`), 20 s pro Raum. Wird nicht mit
   ausgeliefert.
+
+## Danke
+
+Die Idee zu dieser Integration stammt von Dominik (ich hoffe, ich habe den Namen
+richtig in Erinnerung), der sie mir auf dem **Home Assistant Community Day 2026**
+vorgestellt hat. Ohne ihn gäbe es Vacuum Room Queue nicht – vielen Dank dafür!
+Dominik, falls du das liest: Melde dich sehr gerne bei mir, einfach per Issue oder
+Nachricht.

@@ -299,3 +299,10 @@ uv run ruff check . && uv run mypy
   `brand/icon.png` and `icon@2x.png` (needs Playwright).
 - `dev/fake_vacuum/` – a fake vacuum with area cleaning for a test instance
   (`vacuum: [{platform: fake_vacuum}]`), 20 s per room. Not shipped.
+
+## Thanks
+
+The idea for this integration came from Dominik (I hope I remember the name
+correctly), who told me about it at the **Home Assistant Community Day 2026**. Without
+him, Vacuum Room Queue would not exist – thank you very much! Dominik, if you read
+this: I'd love to hear from you, just open an issue or drop me a message.
