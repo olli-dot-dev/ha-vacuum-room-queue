@@ -88,7 +88,7 @@ Bereichsreinigung), Home Assistant 2026.11:
 
 Seit 2026.11 ist HACS als **Marketplace** fest in Home Assistant eingebaut.
 
-[![Repository im Marketplace deiner Home-Assistant-Instanz öffnen](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=olli-dot-dev&repository=https%3A%2F%2Fgithub.com%2Folli-dot-dev%2Fha-vacuum-room-queue)
+[![Repository im Marketplace deiner Home-Assistant-Instanz öffnen](https://my.home-assistant.io/badges/marketplace_repository.svg)](https://my.home-assistant.io/redirect/marketplace_repository/?owner=olli-dot-dev&repository=ha-vacuum-room-queue&category=integration)
 
 Auf den Button klicken oder das Repository von Hand hinzufügen:
 
