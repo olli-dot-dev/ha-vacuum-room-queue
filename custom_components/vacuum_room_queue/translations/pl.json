@@ -9,10 +9,13 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Pomieszczenia",
-        "description": "Pomieszczenia pochodzą z przypisania obszarów odkurzacza (encja odkurzacza → ustawienia → przypisz obszary do segmentów). Opcjonalnie możesz ograniczyć i uporządkować pomieszczenia oferowane na karcie; pozostaw puste, aby użyć wszystkich przypisanych.",
+        "title": "Które pomieszczenia ma oferować karta?",
+        "description": "{vacuum} zna te pomieszczenia: **{rooms}**.\n\nKarta oferuje je wszystkie. Wybierz tu pomieszczenia tylko wtedy, gdy karta ma pokazywać ich mniej lub w innej kolejności.",
         "data": {
-          "areas": "Oferowane pomieszczenia"
+          "areas": "Oferuj tylko te pomieszczenia (opcjonalnie)"
+        },
+        "data_description": {
+          "areas": "Wybieraj je w kolejności, w jakiej karta ma je pokazywać. Pozostaw puste, aby użyć wszystkich. Brakuje pomieszczenia? Encja odkurzacza → ustawienia → przypisz obszary do segmentów."
         }
       },
       "rooms_script": {
@@ -61,13 +64,14 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Pomieszczenia",
-        "description": "Pomieszczenia pochodzą z przypisania obszarów odkurzacza (encja odkurzacza → ustawienia → przypisz obszary do segmentów). Opcjonalnie możesz ograniczyć i uporządkować pomieszczenia oferowane na karcie; pozostaw puste, aby użyć wszystkich przypisanych.",
+        "title": "Pomieszczenia i czas oczekiwania",
+        "description": "{vacuum} zna te pomieszczenia: **{rooms}**.\n\nKarta oferuje je wszystkie. Wybierz tu pomieszczenia tylko wtedy, gdy karta ma pokazywać ich mniej lub w innej kolejności.",
         "data": {
-          "areas": "Oferowane pomieszczenia",
+          "areas": "Oferuj tylko te pomieszczenia (opcjonalnie)",
           "start_timeout": "Czas oczekiwania na start"
         },
         "data_description": {
+          "areas": "Wybieraj je w kolejności, w jakiej karta ma je pokazywać. Pozostaw puste, aby użyć wszystkich. Brakuje pomieszczenia? Encja odkurzacza → ustawienia → przypisz obszary do segmentów.",
           "start_timeout": "Ile czasu odkurzacz może potrzebować na rozpoczęcie sprzątania po wysłaniu do pomieszczenia, zanim karta zgłosi „nie rozpoczął”. Stacje, które najpierw myją lub suszą mopy, potrzebują na to kilku minut."
         }
       },

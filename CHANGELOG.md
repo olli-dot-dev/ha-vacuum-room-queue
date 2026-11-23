@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.3 – 2026-11-23
+
+- Einrichtung/Optionen, Schritt „Räume“: nennt jetzt die Räume, die der Saugroboter
+  kennt, und erklärt kurz, dass die Karte ohne Auswahl alle anbietet. Das Auswahlfeld
+  zeigt nur noch diese Räume statt aller Bereiche des Hauses; die Reihenfolge ergibt
+  sich aus der Auswahl. Ein früher gespeicherter, inzwischen nicht mehr zugeordneter
+  Raum bleibt sichtbar und wird als Fehler gemeldet, damit man ihn entfernen kann
+
 ## 0.2.2 – 2026-11-23
 
 - Behoben: Beim Löschen der Integration blieben die gespeicherte Raumreihenfolge

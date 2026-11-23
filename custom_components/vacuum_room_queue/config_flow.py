@@ -28,6 +28,7 @@ from homeassistant.helpers.selector import (
     NumberSelector,
     NumberSelectorConfig,
     NumberSelectorMode,
+    SelectOptionDict,
     SelectSelector,
     SelectSelectorConfig,
     SelectSelectorMode,
@@ -68,10 +69,48 @@ def _method_schema(default: str) -> vol.Schema:
     )
 
 
+def _area_name(hass: HomeAssistant, area_id: str) -> str:
+    area = ar.async_get(hass).async_get_area(area_id)
+    return area.name if area else area_id
+
+
+def _robot_rooms_selector(
+    hass: HomeAssistant, vacuum: str, selected: list[str]
+) -> SelectSelector:
+    """Offer only the rooms the vacuum can go to (in mapping order).
+
+    Rooms saved earlier but no longer mapped stay selectable, so the form
+    still shows them and _validate_rooms can say which one is the problem.
+    """
+    room_ids = mapped_areas(hass, vacuum)
+    room_ids += [a for a in selected if a not in room_ids]
+    return SelectSelector(
+        SelectSelectorConfig(
+            options=[
+                SelectOptionDict(value=a, label=_area_name(hass, a)) for a in room_ids
+            ],
+            multiple=True,
+            mode=SelectSelectorMode.DROPDOWN,
+        )
+    )
+
+
+def _rooms_placeholders(hass: HomeAssistant, vacuum: str) -> dict[str, str]:
+    state = hass.states.get(vacuum)
+    return {
+        "vacuum": state.name if state else vacuum,
+        "rooms": ", ".join(_area_name(hass, a) for a in mapped_areas(hass, vacuum)),
+    }
+
+
 def _rooms_schema(
-    method: str, defaults: dict[str, Any], *, with_timeout: bool = False
+    hass: HomeAssistant,
+    vacuum: str,
+    method: str,
+    defaults: dict[str, Any],
+    *,
+    with_timeout: bool = False,
 ) -> vol.Schema:
-    areas = AreaSelector(AreaSelectorConfig(multiple=True, reorder=True))
     fields: dict[Any, Any] = {}
     if method == METHOD_SCRIPT:
         script_key = (
@@ -80,9 +119,14 @@ def _rooms_schema(
             else vol.Required(CONF_SCRIPT)
         )
         fields[script_key] = EntitySelector(EntitySelectorConfig(domain="script"))
-        fields[vol.Required(CONF_AREAS, default=defaults.get(CONF_AREAS, []))] = areas
+        fields[vol.Required(CONF_AREAS, default=defaults.get(CONF_AREAS, []))] = (
+            AreaSelector(AreaSelectorConfig(multiple=True, reorder=True))
+        )
     else:
-        fields[vol.Optional(CONF_AREAS, default=defaults.get(CONF_AREAS, []))] = areas
+        selected = list(defaults.get(CONF_AREAS, []))
+        fields[vol.Optional(CONF_AREAS, default=selected)] = _robot_rooms_selector(
+            hass, vacuum, selected
+        )
     if with_timeout:
         low, high = START_TIMEOUT_RANGE_MINUTES
         fields[
@@ -112,11 +156,7 @@ def _validate_rooms(
         mapped = set(mapped_areas(hass, vacuum))
         unmapped = [a for a in user_input.get(CONF_AREAS, []) if a not in mapped]
         if unmapped:
-            area_reg = ar.async_get(hass)
-            names = [
-                area.name if (area := area_reg.async_get_area(a)) else a
-                for a in unmapped
-            ]
+            names = [_area_name(hass, a) for a in unmapped]
             return {CONF_AREAS: "unmapped_areas"}, {"areas": ", ".join(names)}
     return {}, {}
 
@@ -255,9 +295,14 @@ class RoomQueueConfigFlow(_MappingSteps, ConfigFlow, domain=DOMAIN):
                 )
         return self.async_show_form(
             step_id=f"rooms_{self._method}",
-            data_schema=_rooms_schema(self._method, user_input or {}),
+            data_schema=_rooms_schema(
+                self.hass, self._vacuum, self._method, user_input or {}
+            ),
             errors=errors,
-            description_placeholders=placeholders,
+            description_placeholders={
+                **_rooms_placeholders(self.hass, self._vacuum),
+                **placeholders,
+            },
         )
 
     async_step_rooms_clean_area = async_step_rooms
@@ -306,12 +351,17 @@ class RoomQueueOptionsFlow(_MappingSteps, OptionsFlow):
         return self.async_show_form(
             step_id=f"rooms_{self._method}",
             data_schema=_rooms_schema(
+                self.hass,
+                self._vacuum_id,
                 self._method,
                 user_input or dict(self.config_entry.options),
                 with_timeout=True,
             ),
             errors=errors,
-            description_placeholders=placeholders,
+            description_placeholders={
+                **_rooms_placeholders(self.hass, self._vacuum_id),
+                **placeholders,
+            },
         )
 
     async_step_rooms_clean_area = async_step_rooms

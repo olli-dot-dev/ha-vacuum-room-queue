@@ -9,10 +9,13 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Kamers",
-        "description": "De kamers komen uit de ruimtetoewijzing van de stofzuiger (stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen). Beperk en sorteer optioneel de kamers die de kaart aanbiedt; leeg laten voor alle toegewezen kamers.",
+        "title": "Welke kamers moet de kaart aanbieden?",
+        "description": "{vacuum} kent deze kamers: **{rooms}**.\n\nDe kaart biedt ze allemaal aan. Kies hier alleen kamers als de kaart minder kamers of een andere volgorde moet tonen.",
         "data": {
-          "areas": "Aangeboden kamers"
+          "areas": "Alleen deze kamers aanbieden (optioneel)"
+        },
+        "data_description": {
+          "areas": "Kies ze in de volgorde waarin de kaart ze moet tonen. Leeg laten = alle. Ontbreekt er een kamer? Stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen."
         }
       },
       "rooms_script": {
@@ -61,13 +64,14 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Kamers",
-        "description": "De kamers komen uit de ruimtetoewijzing van de stofzuiger (stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen). Beperk en sorteer optioneel de kamers die de kaart aanbiedt; leeg laten voor alle toegewezen kamers.",
+        "title": "Kamers en wachttijd",
+        "description": "{vacuum} kent deze kamers: **{rooms}**.\n\nDe kaart biedt ze allemaal aan. Kies hier alleen kamers als de kaart minder kamers of een andere volgorde moet tonen.",
         "data": {
-          "areas": "Aangeboden kamers",
+          "areas": "Alleen deze kamers aanbieden (optioneel)",
           "start_timeout": "Wachttijd tot de start"
         },
         "data_description": {
+          "areas": "Kies ze in de volgorde waarin de kaart ze moet tonen. Leeg laten = alle. Ontbreekt er een kamer? Stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen.",
           "start_timeout": "Hoe lang de stofzuiger na het commando mag doen over het starten, voordat de kaart ‘is niet gestart’ meldt. Stations die eerst de dweilen wassen of drogen, hebben daar een paar minuten voor nodig."
         }
       },

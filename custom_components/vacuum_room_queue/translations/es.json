@@ -9,10 +9,13 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Habitaciones",
-        "description": "Las habitaciones proceden de la asignación de áreas de la aspiradora (entidad de la aspiradora → ajustes → asignar áreas a segmentos). Opcionalmente, limita y ordena las habitaciones que ofrece la tarjeta; déjalo vacío para todas las habitaciones asignadas.",
+        "title": "¿Qué habitaciones debe ofrecer la tarjeta?",
+        "description": "{vacuum} conoce estas habitaciones: **{rooms}**.\n\nLa tarjeta las ofrece todas. Elige habitaciones aquí solo si debe mostrar menos o en otro orden.",
         "data": {
-          "areas": "Habitaciones ofrecidas"
+          "areas": "Ofrecer solo estas habitaciones (opcional)"
+        },
+        "data_description": {
+          "areas": "Elígelas en el orden en que la tarjeta debe mostrarlas. Déjalo vacío para todas. ¿Falta una habitación? Entidad de la aspiradora → ajustes → asignar áreas a segmentos."
         }
       },
       "rooms_script": {
@@ -61,13 +64,14 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Habitaciones",
-        "description": "Las habitaciones proceden de la asignación de áreas de la aspiradora (entidad de la aspiradora → ajustes → asignar áreas a segmentos). Opcionalmente, limita y ordena las habitaciones que ofrece la tarjeta; déjalo vacío para todas las habitaciones asignadas.",
+        "title": "Habitaciones y espera",
+        "description": "{vacuum} conoce estas habitaciones: **{rooms}**.\n\nLa tarjeta las ofrece todas. Elige habitaciones aquí solo si debe mostrar menos o en otro orden.",
         "data": {
-          "areas": "Habitaciones ofrecidas",
+          "areas": "Ofrecer solo estas habitaciones (opcional)",
           "start_timeout": "Espera hasta el inicio"
         },
         "data_description": {
+          "areas": "Elígelas en el orden en que la tarjeta debe mostrarlas. Déjalo vacío para todas. ¿Falta una habitación? Entidad de la aspiradora → ajustes → asignar áreas a segmentos.",
           "start_timeout": "Cuánto puede tardar la aspiradora en empezar a limpiar tras enviarla a una habitación antes de que la tarjeta indique «no ha empezado». Las estaciones que primero lavan o secan las mopas necesitan unos minutos."
         }
       },

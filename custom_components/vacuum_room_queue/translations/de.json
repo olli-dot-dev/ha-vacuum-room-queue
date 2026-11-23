@@ -9,10 +9,13 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Räume",
-        "description": "Die Räume kommen aus der Bereichszuordnung des Saugroboters (Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen). Optional kannst du die in der Karte angebotenen Räume einschränken und sortieren; leer lassen für alle zugeordneten Räume.",
+        "title": "Welche Räume soll die Karte anbieten?",
+        "description": "{vacuum} kennt diese Räume: **{rooms}**.\n\nDie Karte bietet alle davon an. Wähle hier nur dann Räume aus, wenn sie weniger Räume oder eine andere Reihenfolge zeigen soll.",
         "data": {
-          "areas": "Angebotene Räume"
+          "areas": "Nur diese Räume anbieten (optional)"
+        },
+        "data_description": {
+          "areas": "In der Reihenfolge auswählen, in der die Karte sie zeigen soll. Leer lassen = alle. Ein Raum fehlt? Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen."
         }
       },
       "rooms_script": {
@@ -61,13 +64,14 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Räume",
-        "description": "Die Räume kommen aus der Bereichszuordnung des Saugroboters (Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen). Optional kannst du die in der Karte angebotenen Räume einschränken und sortieren; leer lassen für alle zugeordneten Räume.",
+        "title": "Räume und Wartezeit",
+        "description": "{vacuum} kennt diese Räume: **{rooms}**.\n\nDie Karte bietet alle davon an. Wähle hier nur dann Räume aus, wenn sie weniger Räume oder eine andere Reihenfolge zeigen soll.",
         "data": {
-          "areas": "Angebotene Räume",
+          "areas": "Nur diese Räume anbieten (optional)",
           "start_timeout": "Wartezeit bis zum Start"
         },
         "data_description": {
+          "areas": "In der Reihenfolge auswählen, in der die Karte sie zeigen soll. Leer lassen = alle. Ein Raum fehlt? Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen.",
           "start_timeout": "So lange darf der Roboter nach dem Befehl brauchen, bis er zu saugen beginnt, bevor die Karte „hat nicht angefangen“ meldet. Stationen, die erst die Mopps waschen oder trocknen, brauchen dafür einige Minuten."
         }
       },

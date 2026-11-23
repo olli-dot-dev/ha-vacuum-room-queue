@@ -9,10 +9,13 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Pièces",
-        "description": "Les pièces proviennent de l'association des pièces de l'aspirateur (entité aspirateur → paramètres → associer les pièces aux segments). Vous pouvez limiter et ordonner les pièces proposées dans la carte ; laissez vide pour toutes les pièces associées.",
+        "title": "Quelles pièces la carte doit-elle proposer ?",
+        "description": "{vacuum} connaît ces pièces : **{rooms}**.\n\nLa carte les propose toutes. Ne choisissez des pièces ici que si elle doit en afficher moins ou dans un autre ordre.",
         "data": {
-          "areas": "Pièces proposées"
+          "areas": "Proposer uniquement ces pièces (facultatif)"
+        },
+        "data_description": {
+          "areas": "Choisissez-les dans l'ordre où la carte doit les afficher. Laissez vide pour toutes. Une pièce manque ? Entité aspirateur → paramètres → associer les pièces aux segments."
         }
       },
       "rooms_script": {
@@ -61,13 +64,14 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Pièces",
-        "description": "Les pièces proviennent de l'association des pièces de l'aspirateur (entité aspirateur → paramètres → associer les pièces aux segments). Vous pouvez limiter et ordonner les pièces proposées dans la carte ; laissez vide pour toutes les pièces associées.",
+        "title": "Pièces et délai",
+        "description": "{vacuum} connaît ces pièces : **{rooms}**.\n\nLa carte les propose toutes. Ne choisissez des pièces ici que si elle doit en afficher moins ou dans un autre ordre.",
         "data": {
-          "areas": "Pièces proposées",
+          "areas": "Proposer uniquement ces pièces (facultatif)",
           "start_timeout": "Délai de démarrage"
         },
         "data_description": {
+          "areas": "Choisissez-les dans l'ordre où la carte doit les afficher. Laissez vide pour toutes. Une pièce manque ? Entité aspirateur → paramètres → associer les pièces aux segments.",
           "start_timeout": "Le temps dont l'aspirateur dispose pour commencer à nettoyer après l'envoi dans une pièce, avant que la carte n'indique « n'a pas démarré ». Les stations qui lavent ou sèchent d'abord les serpillières ont besoin de quelques minutes."
         }
       },

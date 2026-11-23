@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 from homeassistant.config_entries import SOURCE_USER
 from homeassistant.core import HomeAssistant
-from homeassistant.data_entry_flow import FlowResultType
+from homeassistant.data_entry_flow import FlowResultType, InvalidData
 from homeassistant.helpers import entity_registry as er
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
@@ -183,8 +183,13 @@ async def test_flow_missing_mapping_use_script(
     assert result["options"][CONF_METHOD] == METHOD_SCRIPT
 
 
+def _offered(result: dict) -> list[tuple[str, str]]:
+    selector = result["data_schema"].schema[CONF_AREAS]
+    return [(o["value"], o["label"]) for o in selector.config["options"]]
+
+
 @pytest.mark.usefixtures("vacuum")
-async def test_flow_refuses_unmapped_rooms(
+async def test_flow_offers_only_the_robots_rooms(
     hass: HomeAssistant, areas: dict[str, str]
 ) -> None:
     result = await hass.config_entries.flow.async_init(
@@ -193,11 +198,40 @@ async def test_flow_refuses_unmapped_rooms(
     result = await hass.config_entries.flow.async_configure(
         result["flow_id"], {CONF_VACUUM: VACUUM}
     )
-    result = await hass.config_entries.flow.async_configure(
-        result["flow_id"], {CONF_AREAS: [areas["Hall"], areas["Bath"]]}
+    # Bath has no segment: not offered, not named.
+    assert _offered(result) == [
+        (areas["Kitchen"], "Kitchen"),
+        (areas["Living"], "Living"),
+        (areas["Hall"], "Hall"),
+    ]
+    assert result["description_placeholders"] == {
+        "vacuum": "Robot",
+        "rooms": "Kitchen, Living, Hall",
+    }
+    with pytest.raises(InvalidData):
+        await hass.config_entries.flow.async_configure(
+            result["flow_id"], {CONF_AREAS: [areas["Hall"], areas["Bath"]]}
+        )
+
+
+async def test_options_flow_flags_room_no_longer_mapped(
+    hass: HomeAssistant, loaded: MockConfigEntry, areas: dict[str, str]
+) -> None:
+    # Saved earlier, mapping changed since: still shown, so it can be removed.
+    hass.config_entries.async_update_entry(
+        loaded, options={**loaded.options, CONF_AREAS: [areas["Bath"]]}
+    )
+    await hass.async_block_till_done()
+    result = await hass.config_entries.options.async_init(loaded.entry_id)
+    result = await hass.config_entries.options.async_configure(
+        result["flow_id"], {CONF_METHOD: METHOD_CLEAN_AREA}
+    )
+    assert (areas["Bath"], "Bath") in _offered(result)
+    result = await hass.config_entries.options.async_configure(
+        result["flow_id"], {CONF_AREAS: [areas["Bath"]], CONF_START_TIMEOUT: 10}
     )
     assert result["errors"] == {CONF_AREAS: "unmapped_areas"}
-    assert result["description_placeholders"] == {"areas": "Bath"}
+    assert result["description_placeholders"]["areas"] == "Bath"
 
 
 async def test_options_flow_explains_missing_mapping(

@@ -9,10 +9,13 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Rooms",
-        "description": "Rooms come from the area mapping of the vacuum (vacuum entity → settings → map areas to segments). Optionally limit and order the rooms offered in the card; leave empty for all mapped rooms.",
+        "title": "Which rooms should the card offer?",
+        "description": "{vacuum} knows these rooms: **{rooms}**.\n\nThe card offers all of them. Only pick rooms here if it should show fewer rooms or a different order.",
         "data": {
-          "areas": "Rooms offered"
+          "areas": "Only offer these rooms (optional)"
+        },
+        "data_description": {
+          "areas": "Pick them in the order the card should show them. Leave empty for all. A room is missing? Vacuum entity → settings → map areas to segments."
         }
       },
       "rooms_script": {
@@ -61,13 +64,14 @@
         }
       },
       "rooms_clean_area": {
-        "title": "Rooms",
-        "description": "Rooms come from the area mapping of the vacuum (vacuum entity → settings → map areas to segments). Optionally limit and order the rooms offered in the card; leave empty for all mapped rooms.",
+        "title": "Rooms and waiting time",
+        "description": "{vacuum} knows these rooms: **{rooms}**.\n\nThe card offers all of them. Only pick rooms here if it should show fewer rooms or a different order.",
         "data": {
-          "areas": "Rooms offered",
+          "areas": "Only offer these rooms (optional)",
           "start_timeout": "Wait for the start"
         },
         "data_description": {
+          "areas": "Pick them in the order the card should show them. Leave empty for all. A room is missing? Vacuum entity → settings → map areas to segments.",
           "start_timeout": "How long the vacuum may take to start cleaning after it was sent to a room, before the card reports \"did not start\". Stations that wash or dry the mops first need a few minutes."
         }
       },
