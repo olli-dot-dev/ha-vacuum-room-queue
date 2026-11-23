@@ -120,3 +120,34 @@ def test_listed_as_integration_not_helper() -> None:
         ).read_text("utf-8")
     )
     assert manifest["integration_type"] == "service"
+
+
+async def test_remove_entry_cleans_up(
+    hass: HomeAssistant, vacuum: Vacuum, entry: MockConfigEntry, hass_storage: dict
+) -> None:
+    assert await async_setup_component(hass, "lovelace", {})
+    from homeassistant.components.lovelace.const import LOVELACE_DATA  # noqa: PLC0415
+
+    resources = hass.data[LOVELACE_DATA].resources
+    url = f"{vacuum_room_queue.CARD_URL}?v=1"
+    await vacuum_room_queue._async_register_card_resource(hass, url)
+    other = MockConfigEntry(domain=DOMAIN, data=dict(entry.data))
+    other.add_to_hass(hass)
+    key = f"{DOMAIN}.{entry.entry_id}"
+    hass_storage[key] = {"version": 1, "key": key, "data": {"queue": []}}
+
+    await hass.config_entries.async_remove(entry.entry_id)
+    await hass.async_block_till_done()
+    assert key not in hass_storage
+    # Another queue is left: the card stays.
+    assert any(i["url"] == url for i in resources.async_items())
+
+    await hass.config_entries.async_remove(other.entry_id)
+    await hass.async_block_till_done()
+    assert not any(
+        i["url"].startswith(vacuum_room_queue.CARD_URL) for i in resources.async_items()
+    )
+
+
+async def test_remove_card_resource_without_lovelace(hass: HomeAssistant) -> None:
+    await vacuum_room_queue._async_remove_card_resource(hass)

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.2 – 2026-11-23
+
+- Behoben: Beim Löschen der Integration blieben die gespeicherte Raumreihenfolge
+  (`.storage/vacuum_room_queue.<id>`) und – nach dem letzten Eintrag – die Karte als
+  Dashboard-Ressource zurück. Jetzt räumt die Integration beides selbst auf
+- README: Installation über den Marketplace (Home Assistant 2026.11), Logo, Badges,
+  Screenshot
+
 ## 0.2.1 – 2026-11-19
 
 - Behoben: Die Integration erschien nicht unter *Einstellungen → Geräte & Dienste →

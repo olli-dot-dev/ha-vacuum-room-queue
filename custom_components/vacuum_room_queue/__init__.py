@@ -26,6 +26,7 @@ from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.exceptions import ServiceValidationError
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers import entity_registry as er
+from homeassistant.helpers.storage import Store
 from homeassistant.helpers.typing import ConfigType
 
 from .const import (
@@ -41,6 +42,7 @@ from .const import (
     SERVICE_SKIP,
     SERVICE_START,
     SERVICE_STOP,
+    STORAGE_VERSION,
 )
 from .manager import RoomQueueManager
 
@@ -146,7 +148,7 @@ async def _async_register_card_resource(hass: HomeAssistant, url: str) -> None:
     add_extra_js_url fallback is the only way the card gets loaded.
     """
     try:
-        from homeassistant.components.lovelace.const import (  # noqa: PLC0415  # noqa: PLC0415
+        from homeassistant.components.lovelace.const import (  # noqa: PLC0415
             LOVELACE_DATA,
             MODE_STORAGE,
         )
@@ -174,6 +176,26 @@ async def _async_register_card_resource(hass: HomeAssistant, url: str) -> None:
         _LOGGER.debug("Could not register the card as Lovelace resource", exc_info=True)
 
 
+async def _async_remove_card_resource(hass: HomeAssistant) -> None:
+    """Remove the card's Lovelace resource again (storage mode only)."""
+    try:
+        from homeassistant.components.lovelace.const import (  # noqa: PLC0415
+            LOVELACE_DATA,
+            MODE_STORAGE,
+        )
+
+        lovelace_data = hass.data.get(LOVELACE_DATA)
+        if lovelace_data is None or lovelace_data.resource_mode != MODE_STORAGE:
+            return
+        resources: Any = lovelace_data.resources
+        await resources.async_load()
+        for item in list(resources.async_items()):
+            if item["url"].split("?", 1)[0] == CARD_URL:
+                await resources.async_delete_item(item["id"])
+    except Exception:
+        _LOGGER.debug("Could not remove the card's Lovelace resource", exc_info=True)
+
+
 async def async_setup_entry(hass: HomeAssistant, entry: RoomQueueConfigEntry) -> bool:
     """Set up the room queue of one vacuum."""
     manager = RoomQueueManager(hass, entry)
@@ -192,6 +214,24 @@ async def _async_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> Non
 async def async_unload_entry(hass: HomeAssistant, entry: RoomQueueConfigEntry) -> bool:
     """Unload a config entry."""
     return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
+
+
+async def async_remove_entry(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    """Clean up after a removed queue.
+
+    Deletes the saved queue of this vacuum. When it was the last queue, the
+    card's Lovelace resource goes as well, so nothing is left behind.
+    """
+    await Store[dict[str, Any]](
+        hass, STORAGE_VERSION, f"{DOMAIN}.{entry.entry_id}"
+    ).async_remove()
+    others = [
+        e
+        for e in hass.config_entries.async_entries(DOMAIN)
+        if e.entry_id != entry.entry_id
+    ]
+    if not others:
+        await _async_remove_card_resource(hass)
 
 
 def _get_manager(hass: HomeAssistant, entity_id: str) -> RoomQueueManager:
