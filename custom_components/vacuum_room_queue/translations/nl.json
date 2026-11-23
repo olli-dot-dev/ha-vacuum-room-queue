@@ -27,19 +27,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Kamers nog niet toegewezen",
-        "description": "{vacuum} kan afzonderlijke ruimtes reinigen, maar nog geen enkel segment is aan een Home Assistant-ruimte toegewezen – er zouden dus geen kamers voor de wachtrij zijn.\n\nOpen de stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen, wijs de segmenten toe en kies daarna **Opnieuw controleren**.",
+        "title": "Kamers toewijzen",
+        "description": "{vacuum} kan losse kamers reinigen, maar weet nog niet welke van zijn kamers bij welke Home Assistant-ruimte hoort.\n\n1. Wijs ze toe in Home Assistant: stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen.\n2. Kies hier **Opnieuw controleren**.",
         "menu_options": {
           "recheck": "Opnieuw controleren",
-          "use_script": "In plaats daarvan een eigen script per kamer gebruiken"
+          "use_script": "In plaats daarvan een script per kamer gebruiken"
         }
       },
       "mapping_unnamed": {
-        "title": "Kamers nog niet benoemd",
-        "description": "{vacuum} kan afzonderlijke ruimtes reinigen, maar nog geen enkel segment is aan een Home Assistant-ruimte toegewezen. De segmenten hebben alleen nummers, dus in het toewijzingsvenster zou je niet zien welk segment welke kamer is.\n\n1. Geef de kamers een naam in de app van de stofzuiger (Valetudo: webinterface → kaart → segmenten bewerken).\n2. Open de stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen en wijs ze toe.\n3. Kies **Opnieuw controleren**.",
+        "title": "Geef de kamers eerst een naam",
+        "description": "{vacuum} geeft voor zijn kamers alleen nummers door: {segments}. Om ze aan je Home Assistant-ruimtes toe te wijzen, hebben ze eerst namen nodig.\n\n1. Geef de kamers een naam in de app van de stofzuiger (Valetudo: webinterface → kaart → segmenten bewerken).\n2. Wijs ze toe in Home Assistant: stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen.\n3. Kies hier **Opnieuw controleren**.",
         "menu_options": {
           "recheck": "Opnieuw controleren",
-          "use_script": "In plaats daarvan een eigen script per kamer gebruiken"
+          "use_script": "In plaats daarvan een script per kamer gebruiken"
         }
       }
     },
@@ -88,19 +88,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Kamers nog niet toegewezen",
-        "description": "{vacuum} kan afzonderlijke ruimtes reinigen, maar nog geen enkel segment is aan een Home Assistant-ruimte toegewezen – er zouden dus geen kamers voor de wachtrij zijn.\n\nOpen de stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen, wijs de segmenten toe en kies daarna **Opnieuw controleren**.",
+        "title": "Kamers toewijzen",
+        "description": "{vacuum} kan losse kamers reinigen, maar weet nog niet welke van zijn kamers bij welke Home Assistant-ruimte hoort.\n\n1. Wijs ze toe in Home Assistant: stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen.\n2. Kies hier **Opnieuw controleren**.",
         "menu_options": {
           "recheck": "Opnieuw controleren",
-          "use_script": "In plaats daarvan een eigen script per kamer gebruiken"
+          "use_script": "In plaats daarvan een script per kamer gebruiken"
         }
       },
       "mapping_unnamed": {
-        "title": "Kamers nog niet benoemd",
-        "description": "{vacuum} kan afzonderlijke ruimtes reinigen, maar nog geen enkel segment is aan een Home Assistant-ruimte toegewezen. De segmenten hebben alleen nummers, dus in het toewijzingsvenster zou je niet zien welk segment welke kamer is.\n\n1. Geef de kamers een naam in de app van de stofzuiger (Valetudo: webinterface → kaart → segmenten bewerken).\n2. Open de stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen en wijs ze toe.\n3. Kies **Opnieuw controleren**.",
+        "title": "Geef de kamers eerst een naam",
+        "description": "{vacuum} geeft voor zijn kamers alleen nummers door: {segments}. Om ze aan je Home Assistant-ruimtes toe te wijzen, hebben ze eerst namen nodig.\n\n1. Geef de kamers een naam in de app van de stofzuiger (Valetudo: webinterface → kaart → segmenten bewerken).\n2. Wijs ze toe in Home Assistant: stofzuigerentiteit → instellingen → ruimtes aan segmenten toewijzen.\n3. Kies hier **Opnieuw controleren**.",
         "menu_options": {
           "recheck": "Opnieuw controleren",
-          "use_script": "In plaats daarvan een eigen script per kamer gebruiken"
+          "use_script": "In plaats daarvan een script per kamer gebruiken"
         }
       }
     },

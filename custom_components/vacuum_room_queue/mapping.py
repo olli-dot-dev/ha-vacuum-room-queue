@@ -41,22 +41,25 @@ def mapped_areas(hass: HomeAssistant, entity_id: str) -> list[str]:
     return [area for area, segments in mapping.items() if segments]
 
 
-async def async_segments_unnamed(hass: HomeAssistant, entity_id: str) -> bool:
-    """Return True if all segments of the vacuum only carry placeholder names.
+async def async_unnamed_segments(hass: HomeAssistant, entity_id: str) -> list[str]:
+    """Return the segment labels if all segments only carry placeholder names.
 
     Then the mapping dialog of Home Assistant shows nothing but numbers, and
-    the rooms have to be named in the vacuum's own app first.
+    the rooms have to be named in the vacuum's own app first. Returns [] when
+    the segments have real names (or cannot be read).
     """
     component = hass.data.get(DATA_COMPONENT)
     entity = component.get_entity(entity_id) if component else None
     if entity is None:
-        return False
+        return []
     try:
         segments = await entity.async_get_segments()
     except Exception:
         _LOGGER.debug("Could not read the segments of %s", entity_id, exc_info=True)
-        return False
-    return bool(segments) and all(
+        return []
+    if not all(
         not segment.name or _PLACEHOLDER_NAME.match(segment.name)
         for segment in segments
-    )
+    ):
+        return []
+    return [segment.name or segment.id for segment in segments]

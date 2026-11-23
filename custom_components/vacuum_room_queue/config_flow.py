@@ -46,7 +46,7 @@ from .const import (
     METHOD_SCRIPT,
     START_TIMEOUT_RANGE_MINUTES,
 )
-from .mapping import async_segments_unnamed, mapped_areas
+from .mapping import async_unnamed_segments, mapped_areas
 
 
 def _supports_clean_area(hass: HomeAssistant, entity_id: str) -> bool:
@@ -170,6 +170,7 @@ class _MappingSteps:
 
     hass: HomeAssistant
     _method: str
+    _segments: list[str] = []  # noqa: RUF012 - replaced per flow, never mutated
 
     @property
     def _vacuum_id(self) -> str:
@@ -185,18 +186,22 @@ class _MappingSteps:
         if self._method == METHOD_CLEAN_AREA and not mapped_areas(
             self.hass, self._vacuum_id
         ):
-            if await async_segments_unnamed(self.hass, self._vacuum_id):
+            if segments := await async_unnamed_segments(self.hass, self._vacuum_id):
+                self._segments = segments
                 return await self.async_step_mapping_unnamed()
             return await self.async_step_mapping_missing()
         return await self.async_step_rooms()
 
-    def _mapping_menu(self, step_id: str) -> ConfigFlowResult:
+    def _mapping_menu(
+        self, step_id: str, extra: dict[str, str] | None = None
+    ) -> ConfigFlowResult:
         state = self.hass.states.get(self._vacuum_id)
         return self.async_show_menu(  # type: ignore[attr-defined,no-any-return]
             step_id=step_id,
             menu_options=["recheck", "use_script"],
             description_placeholders={
-                "vacuum": state.name if state else self._vacuum_id
+                "vacuum": state.name if state else self._vacuum_id,
+                **(extra or {}),
             },
         )
 
@@ -210,7 +215,9 @@ class _MappingSteps:
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
         """Explain that the segments need names in the vacuum's app first."""
-        return self._mapping_menu("mapping_unnamed")
+        return self._mapping_menu(
+            "mapping_unnamed", {"segments": ", ".join(self._segments)}
+        )
 
     async def async_step_recheck(
         self, user_input: dict[str, Any] | None = None

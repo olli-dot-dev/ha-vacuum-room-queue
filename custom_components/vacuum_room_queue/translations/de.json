@@ -27,19 +27,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Räume noch nicht zugeordnet",
-        "description": "{vacuum} kann einzelne Bereiche reinigen, aber noch keines seiner Segmente ist einem Home-Assistant-Bereich zugeordnet – es gäbe also keine Räume für die Raumreihenfolge.\n\nÖffne die Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen, ordne die Segmente zu und wähle dann **Erneut prüfen**.",
+        "title": "Räume zuordnen",
+        "description": "{vacuum} kann gezielt einzelne Räume reinigen, weiß aber noch nicht, welcher seiner Räume zu welchem Home-Assistant-Bereich gehört.\n\n1. In Home Assistant zuordnen: Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen.\n2. Hier **Erneut prüfen** wählen.",
         "menu_options": {
           "recheck": "Erneut prüfen",
-          "use_script": "Stattdessen eigenes Skript pro Raum verwenden"
+          "use_script": "Stattdessen ein Skript pro Raum verwenden"
         }
       },
       "mapping_unnamed": {
-        "title": "Räume noch nicht benannt",
-        "description": "{vacuum} kann einzelne Bereiche reinigen, aber noch keines seiner Segmente ist einem Home-Assistant-Bereich zugeordnet. Die Segmente haben nur Nummern – im Zuordnungsdialog wäre also nicht zu erkennen, welches Segment welcher Raum ist.\n\n1. Benenne die Räume in der App des Saugroboters (Valetudo: Weboberfläche → Karte → Segmente bearbeiten).\n2. Öffne die Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen und ordne sie zu.\n3. Wähle **Erneut prüfen**.",
+        "title": "Räume zuerst benennen",
+        "description": "{vacuum} liefert für seine Räume nur Nummern: {segments}. Damit du sie deinen Home-Assistant-Bereichen zuordnen kannst, brauchen sie zuerst Namen.\n\n1. Räume in der App des Roboters benennen (Valetudo: Weboberfläche → Karte → Segmente bearbeiten).\n2. In Home Assistant zuordnen: Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen.\n3. Hier **Erneut prüfen** wählen.",
         "menu_options": {
           "recheck": "Erneut prüfen",
-          "use_script": "Stattdessen eigenes Skript pro Raum verwenden"
+          "use_script": "Stattdessen ein Skript pro Raum verwenden"
         }
       }
     },
@@ -88,19 +88,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Räume noch nicht zugeordnet",
-        "description": "{vacuum} kann einzelne Bereiche reinigen, aber noch keines seiner Segmente ist einem Home-Assistant-Bereich zugeordnet – es gäbe also keine Räume für die Raumreihenfolge.\n\nÖffne die Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen, ordne die Segmente zu und wähle dann **Erneut prüfen**.",
+        "title": "Räume zuordnen",
+        "description": "{vacuum} kann gezielt einzelne Räume reinigen, weiß aber noch nicht, welcher seiner Räume zu welchem Home-Assistant-Bereich gehört.\n\n1. In Home Assistant zuordnen: Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen.\n2. Hier **Erneut prüfen** wählen.",
         "menu_options": {
           "recheck": "Erneut prüfen",
-          "use_script": "Stattdessen eigenes Skript pro Raum verwenden"
+          "use_script": "Stattdessen ein Skript pro Raum verwenden"
         }
       },
       "mapping_unnamed": {
-        "title": "Räume noch nicht benannt",
-        "description": "{vacuum} kann einzelne Bereiche reinigen, aber noch keines seiner Segmente ist einem Home-Assistant-Bereich zugeordnet. Die Segmente haben nur Nummern – im Zuordnungsdialog wäre also nicht zu erkennen, welches Segment welcher Raum ist.\n\n1. Benenne die Räume in der App des Saugroboters (Valetudo: Weboberfläche → Karte → Segmente bearbeiten).\n2. Öffne die Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen und ordne sie zu.\n3. Wähle **Erneut prüfen**.",
+        "title": "Räume zuerst benennen",
+        "description": "{vacuum} liefert für seine Räume nur Nummern: {segments}. Damit du sie deinen Home-Assistant-Bereichen zuordnen kannst, brauchen sie zuerst Namen.\n\n1. Räume in der App des Roboters benennen (Valetudo: Weboberfläche → Karte → Segmente bearbeiten).\n2. In Home Assistant zuordnen: Saugroboter-Entität → Einstellungen → Bereiche den Segmenten zuordnen.\n3. Hier **Erneut prüfen** wählen.",
         "menu_options": {
           "recheck": "Erneut prüfen",
-          "use_script": "Stattdessen eigenes Skript pro Raum verwenden"
+          "use_script": "Stattdessen ein Skript pro Raum verwenden"
         }
       }
     },

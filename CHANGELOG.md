@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.4 – 2026-11-23
+
+- Einrichtung/Optionen: Die Hinweise „Räume zuordnen“ und „Räume zuerst benennen“
+  (vorher „Räume noch nicht zugeordnet/benannt“) sagen kürzer, was zu tun ist, in
+  nummerierten Schritten. Liefert der Roboter nur Nummern statt Raumnamen, zeigt der
+  Hinweis diese Nummern jetzt an
+
 ## 0.2.3 – 2026-11-23
 
 - Einrichtung/Optionen, Schritt „Räume“: nennt jetzt die Räume, die der Saugroboter

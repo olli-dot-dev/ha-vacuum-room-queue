@@ -9,7 +9,7 @@ from homeassistant.components.vacuum import Segment
 from homeassistant.components.vacuum.const import DATA_COMPONENT
 from homeassistant.core import HomeAssistant
 
-from custom_components.vacuum_room_queue.mapping import async_segments_unnamed
+from custom_components.vacuum_room_queue.mapping import async_unnamed_segments
 
 from .conftest import VACUUM
 
@@ -31,22 +31,23 @@ def _component(entity: _Entity | None) -> SimpleNamespace:
 @pytest.mark.parametrize(
     ("names", "unnamed"),
     [
-        (["1", "2", "12"], True),
-        (["Room 1", "Raum 2", "segment_3", ""], True),
-        (["1", "Küche"], False),
-        (["Kitchen", "Living room"], False),
-        ([], False),
-        (RuntimeError("offline"), False),
+        (["1", "2", "12"], ["1", "2", "12"]),
+        # A segment without any name is shown by its id.
+        (["Room 1", "Raum 2", "segment_3", ""], ["Room 1", "Raum 2", "segment_3", "3"]),
+        (["1", "Küche"], []),
+        (["Kitchen", "Living room"], []),
+        ([], []),
+        (RuntimeError("offline"), []),
     ],
 )
-async def test_segments_unnamed(
-    hass: HomeAssistant, names: list[str] | Exception, unnamed: bool
+async def test_unnamed_segments(
+    hass: HomeAssistant, names: list[str] | Exception, unnamed: list[str]
 ) -> None:
     hass.data[DATA_COMPONENT] = _component(_Entity(names))  # type: ignore[assignment]
-    assert await async_segments_unnamed(hass, VACUUM) is unnamed
+    assert await async_unnamed_segments(hass, VACUUM) == unnamed
 
 
-async def test_segments_unnamed_without_entity(hass: HomeAssistant) -> None:
-    assert await async_segments_unnamed(hass, VACUUM) is False
+async def test_unnamed_segments_without_entity(hass: HomeAssistant) -> None:
+    assert await async_unnamed_segments(hass, VACUUM) == []
     hass.data[DATA_COMPONENT] = _component(None)  # type: ignore[assignment]
-    assert await async_segments_unnamed(hass, VACUUM) is False
+    assert await async_unnamed_segments(hass, VACUUM) == []

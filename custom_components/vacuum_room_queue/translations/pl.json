@@ -27,19 +27,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Pomieszczenia jeszcze nieprzypisane",
-        "description": "{vacuum} potrafi sprzątać pojedyncze obszary, ale żaden z jego segmentów nie jest jeszcze przypisany do obszaru Home Assistant, więc kolejka nie miałaby pomieszczeń.\n\nOtwórz encję odkurzacza → ustawienia → przypisz obszary do segmentów, przypisz segmenty, a następnie wybierz **Sprawdź ponownie**.",
+        "title": "Przypisz pomieszczenia",
+        "description": "{vacuum} potrafi sprzątać pojedyncze pomieszczenia, ale nie wie jeszcze, które z nich należy do którego obszaru Home Assistant.\n\n1. Przypisz je w Home Assistant: encja odkurzacza → ustawienia → przypisz obszary do segmentów.\n2. Wybierz tutaj **Sprawdź ponownie**.",
         "menu_options": {
           "recheck": "Sprawdź ponownie",
-          "use_script": "Zamiast tego użyj własnego skryptu dla każdego pomieszczenia"
+          "use_script": "Zamiast tego użyj skryptu dla każdego pomieszczenia"
         }
       },
       "mapping_unnamed": {
-        "title": "Pomieszczenia jeszcze bez nazw",
-        "description": "{vacuum} potrafi sprzątać pojedyncze obszary, ale żaden z jego segmentów nie jest jeszcze przypisany do obszaru Home Assistant. Segmenty mają tylko numery, więc w oknie przypisywania nie byłoby widać, który segment jest którym pomieszczeniem.\n\n1. Nazwij pomieszczenia w aplikacji odkurzacza (Valetudo: interfejs webowy → mapa → edytuj segmenty).\n2. Otwórz encję odkurzacza → ustawienia → przypisz obszary do segmentów i przypisz je.\n3. Wybierz **Sprawdź ponownie**.",
+        "title": "Najpierw nazwij pomieszczenia",
+        "description": "{vacuum} podaje dla swoich pomieszczeń tylko numery: {segments}. Aby przypisać je do obszarów Home Assistant, muszą najpierw mieć nazwy.\n\n1. Nazwij pomieszczenia w aplikacji odkurzacza (Valetudo: interfejs WWW → mapa → edytuj segmenty).\n2. Przypisz je w Home Assistant: encja odkurzacza → ustawienia → przypisz obszary do segmentów.\n3. Wybierz tutaj **Sprawdź ponownie**.",
         "menu_options": {
           "recheck": "Sprawdź ponownie",
-          "use_script": "Zamiast tego użyj własnego skryptu dla każdego pomieszczenia"
+          "use_script": "Zamiast tego użyj skryptu dla każdego pomieszczenia"
         }
       }
     },
@@ -88,19 +88,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Pomieszczenia jeszcze nieprzypisane",
-        "description": "{vacuum} potrafi sprzątać pojedyncze obszary, ale żaden z jego segmentów nie jest jeszcze przypisany do obszaru Home Assistant, więc kolejka nie miałaby pomieszczeń.\n\nOtwórz encję odkurzacza → ustawienia → przypisz obszary do segmentów, przypisz segmenty, a następnie wybierz **Sprawdź ponownie**.",
+        "title": "Przypisz pomieszczenia",
+        "description": "{vacuum} potrafi sprzątać pojedyncze pomieszczenia, ale nie wie jeszcze, które z nich należy do którego obszaru Home Assistant.\n\n1. Przypisz je w Home Assistant: encja odkurzacza → ustawienia → przypisz obszary do segmentów.\n2. Wybierz tutaj **Sprawdź ponownie**.",
         "menu_options": {
           "recheck": "Sprawdź ponownie",
-          "use_script": "Zamiast tego użyj własnego skryptu dla każdego pomieszczenia"
+          "use_script": "Zamiast tego użyj skryptu dla każdego pomieszczenia"
         }
       },
       "mapping_unnamed": {
-        "title": "Pomieszczenia jeszcze bez nazw",
-        "description": "{vacuum} potrafi sprzątać pojedyncze obszary, ale żaden z jego segmentów nie jest jeszcze przypisany do obszaru Home Assistant. Segmenty mają tylko numery, więc w oknie przypisywania nie byłoby widać, który segment jest którym pomieszczeniem.\n\n1. Nazwij pomieszczenia w aplikacji odkurzacza (Valetudo: interfejs webowy → mapa → edytuj segmenty).\n2. Otwórz encję odkurzacza → ustawienia → przypisz obszary do segmentów i przypisz je.\n3. Wybierz **Sprawdź ponownie**.",
+        "title": "Najpierw nazwij pomieszczenia",
+        "description": "{vacuum} podaje dla swoich pomieszczeń tylko numery: {segments}. Aby przypisać je do obszarów Home Assistant, muszą najpierw mieć nazwy.\n\n1. Nazwij pomieszczenia w aplikacji odkurzacza (Valetudo: interfejs WWW → mapa → edytuj segmenty).\n2. Przypisz je w Home Assistant: encja odkurzacza → ustawienia → przypisz obszary do segmentów.\n3. Wybierz tutaj **Sprawdź ponownie**.",
         "menu_options": {
           "recheck": "Sprawdź ponownie",
-          "use_script": "Zamiast tego użyj własnego skryptu dla każdego pomieszczenia"
+          "use_script": "Zamiast tego użyj skryptu dla każdego pomieszczenia"
         }
       }
     },

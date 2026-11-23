@@ -27,19 +27,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Rooms not mapped yet",
-        "description": "{vacuum} can clean single areas, but none of its segments is mapped to a Home Assistant area yet, so there would be no rooms to queue.\n\nOpen the vacuum entity → settings → map areas to segments, assign the segments, then choose **Check again**.",
+        "title": "Map the rooms",
+        "description": "{vacuum} can clean single rooms, but doesn't know yet which of its rooms belongs to which Home Assistant area.\n\n1. Map them in Home Assistant: vacuum entity → settings → map areas to segments.\n2. Choose **Check again** here.",
         "menu_options": {
           "recheck": "Check again",
-          "use_script": "Use an own script per room instead"
+          "use_script": "Use a script per room instead"
         }
       },
       "mapping_unnamed": {
-        "title": "Rooms not named yet",
-        "description": "{vacuum} can clean single areas, but none of its segments is mapped to a Home Assistant area yet. Its segments only carry numbers, so the mapping dialog would not show which segment is which room.\n\n1. Name the rooms in the vacuum's own app (Valetudo: web interface → map → edit segments).\n2. Open the vacuum entity → settings → map areas to segments and assign them.\n3. Choose **Check again**.",
+        "title": "Name the rooms first",
+        "description": "{vacuum} only reports numbers for its rooms: {segments}. To map them to your Home Assistant areas, they need names first.\n\n1. Name the rooms in the vacuum's own app (Valetudo: web interface → map → edit segments).\n2. Map them in Home Assistant: vacuum entity → settings → map areas to segments.\n3. Choose **Check again** here.",
         "menu_options": {
           "recheck": "Check again",
-          "use_script": "Use an own script per room instead"
+          "use_script": "Use a script per room instead"
         }
       }
     },
@@ -88,19 +88,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Rooms not mapped yet",
-        "description": "{vacuum} can clean single areas, but none of its segments is mapped to a Home Assistant area yet, so there would be no rooms to queue.\n\nOpen the vacuum entity → settings → map areas to segments, assign the segments, then choose **Check again**.",
+        "title": "Map the rooms",
+        "description": "{vacuum} can clean single rooms, but doesn't know yet which of its rooms belongs to which Home Assistant area.\n\n1. Map them in Home Assistant: vacuum entity → settings → map areas to segments.\n2. Choose **Check again** here.",
         "menu_options": {
           "recheck": "Check again",
-          "use_script": "Use an own script per room instead"
+          "use_script": "Use a script per room instead"
         }
       },
       "mapping_unnamed": {
-        "title": "Rooms not named yet",
-        "description": "{vacuum} can clean single areas, but none of its segments is mapped to a Home Assistant area yet. Its segments only carry numbers, so the mapping dialog would not show which segment is which room.\n\n1. Name the rooms in the vacuum's own app (Valetudo: web interface → map → edit segments).\n2. Open the vacuum entity → settings → map areas to segments and assign them.\n3. Choose **Check again**.",
+        "title": "Name the rooms first",
+        "description": "{vacuum} only reports numbers for its rooms: {segments}. To map them to your Home Assistant areas, they need names first.\n\n1. Name the rooms in the vacuum's own app (Valetudo: web interface → map → edit segments).\n2. Map them in Home Assistant: vacuum entity → settings → map areas to segments.\n3. Choose **Check again** here.",
         "menu_options": {
           "recheck": "Check again",
-          "use_script": "Use an own script per room instead"
+          "use_script": "Use a script per room instead"
         }
       }
     },

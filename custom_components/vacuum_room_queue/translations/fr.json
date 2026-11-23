@@ -27,19 +27,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Pièces pas encore associées",
-        "description": "{vacuum} peut nettoyer des pièces individuelles, mais aucun de ses segments n'est encore associé à une pièce de Home Assistant : il n'y aurait donc aucune pièce à mettre en file.\n\nOuvrez l'entité aspirateur → paramètres → associer les pièces aux segments, associez les segments, puis choisissez **Vérifier à nouveau**.",
+        "title": "Associer les pièces",
+        "description": "{vacuum} peut nettoyer des pièces séparément, mais ne sait pas encore quelle pièce correspond à quelle pièce de Home Assistant.\n\n1. Associez-les dans Home Assistant : entité aspirateur → paramètres → associer les pièces aux segments.\n2. Choisissez ici **Vérifier à nouveau**.",
         "menu_options": {
           "recheck": "Vérifier à nouveau",
-          "use_script": "Utiliser plutôt un script propre par pièce"
+          "use_script": "Utiliser plutôt un script par pièce"
         }
       },
       "mapping_unnamed": {
-        "title": "Pièces pas encore nommées",
-        "description": "{vacuum} peut nettoyer des pièces individuelles, mais aucun de ses segments n'est encore associé à une pièce de Home Assistant. Ses segments ne portent que des numéros : la fenêtre d'association ne permettrait pas de savoir quel segment correspond à quelle pièce.\n\n1. Nommez les pièces dans l'application de l'aspirateur (Valetudo : interface web → carte → modifier les segments).\n2. Ouvrez l'entité aspirateur → paramètres → associer les pièces aux segments, et associez-les.\n3. Choisissez **Vérifier à nouveau**.",
+        "title": "Nommer d'abord les pièces",
+        "description": "{vacuum} ne fournit que des numéros pour ses pièces : {segments}. Pour les associer à vos pièces Home Assistant, elles ont d'abord besoin d'un nom.\n\n1. Nommez les pièces dans l'application de l'aspirateur (Valetudo : interface web → carte → modifier les segments).\n2. Associez-les dans Home Assistant : entité aspirateur → paramètres → associer les pièces aux segments.\n3. Choisissez ici **Vérifier à nouveau**.",
         "menu_options": {
           "recheck": "Vérifier à nouveau",
-          "use_script": "Utiliser plutôt un script propre par pièce"
+          "use_script": "Utiliser plutôt un script par pièce"
         }
       }
     },
@@ -88,19 +88,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Pièces pas encore associées",
-        "description": "{vacuum} peut nettoyer des pièces individuelles, mais aucun de ses segments n'est encore associé à une pièce de Home Assistant : il n'y aurait donc aucune pièce à mettre en file.\n\nOuvrez l'entité aspirateur → paramètres → associer les pièces aux segments, associez les segments, puis choisissez **Vérifier à nouveau**.",
+        "title": "Associer les pièces",
+        "description": "{vacuum} peut nettoyer des pièces séparément, mais ne sait pas encore quelle pièce correspond à quelle pièce de Home Assistant.\n\n1. Associez-les dans Home Assistant : entité aspirateur → paramètres → associer les pièces aux segments.\n2. Choisissez ici **Vérifier à nouveau**.",
         "menu_options": {
           "recheck": "Vérifier à nouveau",
-          "use_script": "Utiliser plutôt un script propre par pièce"
+          "use_script": "Utiliser plutôt un script par pièce"
         }
       },
       "mapping_unnamed": {
-        "title": "Pièces pas encore nommées",
-        "description": "{vacuum} peut nettoyer des pièces individuelles, mais aucun de ses segments n'est encore associé à une pièce de Home Assistant. Ses segments ne portent que des numéros : la fenêtre d'association ne permettrait pas de savoir quel segment correspond à quelle pièce.\n\n1. Nommez les pièces dans l'application de l'aspirateur (Valetudo : interface web → carte → modifier les segments).\n2. Ouvrez l'entité aspirateur → paramètres → associer les pièces aux segments, et associez-les.\n3. Choisissez **Vérifier à nouveau**.",
+        "title": "Nommer d'abord les pièces",
+        "description": "{vacuum} ne fournit que des numéros pour ses pièces : {segments}. Pour les associer à vos pièces Home Assistant, elles ont d'abord besoin d'un nom.\n\n1. Nommez les pièces dans l'application de l'aspirateur (Valetudo : interface web → carte → modifier les segments).\n2. Associez-les dans Home Assistant : entité aspirateur → paramètres → associer les pièces aux segments.\n3. Choisissez ici **Vérifier à nouveau**.",
         "menu_options": {
           "recheck": "Vérifier à nouveau",
-          "use_script": "Utiliser plutôt un script propre par pièce"
+          "use_script": "Utiliser plutôt un script par pièce"
         }
       }
     },

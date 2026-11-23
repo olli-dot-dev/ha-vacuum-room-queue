@@ -27,19 +27,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Habitaciones aún sin asignar",
-        "description": "{vacuum} puede limpiar áreas individuales, pero ninguno de sus segmentos está asignado todavía a un área de Home Assistant, así que no habría habitaciones para la cola.\n\nAbre la entidad de la aspiradora → ajustes → asignar áreas a segmentos, asigna los segmentos y elige **Comprobar de nuevo**.",
+        "title": "Asignar las habitaciones",
+        "description": "{vacuum} puede limpiar habitaciones por separado, pero aún no sabe qué habitación corresponde a cada área de Home Assistant.\n\n1. Asígnalas en Home Assistant: entidad de la aspiradora → ajustes → asignar áreas a segmentos.\n2. Elige aquí **Comprobar de nuevo**.",
         "menu_options": {
           "recheck": "Comprobar de nuevo",
-          "use_script": "Usar en su lugar un script propio por habitación"
+          "use_script": "Usar en su lugar un script por habitación"
         }
       },
       "mapping_unnamed": {
-        "title": "Habitaciones aún sin nombre",
-        "description": "{vacuum} puede limpiar áreas individuales, pero ninguno de sus segmentos está asignado todavía a un área de Home Assistant. Sus segmentos solo tienen números, así que en el diálogo de asignación no se vería qué segmento es cada habitación.\n\n1. Pon nombre a las habitaciones en la app de la aspiradora (Valetudo: interfaz web → mapa → editar segmentos).\n2. Abre la entidad de la aspiradora → ajustes → asignar áreas a segmentos y asígnalas.\n3. Elige **Comprobar de nuevo**.",
+        "title": "Primero, nombrar las habitaciones",
+        "description": "{vacuum} solo indica números para sus habitaciones: {segments}. Para asignarlas a tus áreas de Home Assistant, primero necesitan un nombre.\n\n1. Pon nombre a las habitaciones en la app de la aspiradora (Valetudo: interfaz web → mapa → editar segmentos).\n2. Asígnalas en Home Assistant: entidad de la aspiradora → ajustes → asignar áreas a segmentos.\n3. Elige aquí **Comprobar de nuevo**.",
         "menu_options": {
           "recheck": "Comprobar de nuevo",
-          "use_script": "Usar en su lugar un script propio por habitación"
+          "use_script": "Usar en su lugar un script por habitación"
         }
       }
     },
@@ -88,19 +88,19 @@
         }
       },
       "mapping_missing": {
-        "title": "Habitaciones aún sin asignar",
-        "description": "{vacuum} puede limpiar áreas individuales, pero ninguno de sus segmentos está asignado todavía a un área de Home Assistant, así que no habría habitaciones para la cola.\n\nAbre la entidad de la aspiradora → ajustes → asignar áreas a segmentos, asigna los segmentos y elige **Comprobar de nuevo**.",
+        "title": "Asignar las habitaciones",
+        "description": "{vacuum} puede limpiar habitaciones por separado, pero aún no sabe qué habitación corresponde a cada área de Home Assistant.\n\n1. Asígnalas en Home Assistant: entidad de la aspiradora → ajustes → asignar áreas a segmentos.\n2. Elige aquí **Comprobar de nuevo**.",
         "menu_options": {
           "recheck": "Comprobar de nuevo",
-          "use_script": "Usar en su lugar un script propio por habitación"
+          "use_script": "Usar en su lugar un script por habitación"
         }
       },
       "mapping_unnamed": {
-        "title": "Habitaciones aún sin nombre",
-        "description": "{vacuum} puede limpiar áreas individuales, pero ninguno de sus segmentos está asignado todavía a un área de Home Assistant. Sus segmentos solo tienen números, así que en el diálogo de asignación no se vería qué segmento es cada habitación.\n\n1. Pon nombre a las habitaciones en la app de la aspiradora (Valetudo: interfaz web → mapa → editar segmentos).\n2. Abre la entidad de la aspiradora → ajustes → asignar áreas a segmentos y asígnalas.\n3. Elige **Comprobar de nuevo**.",
+        "title": "Primero, nombrar las habitaciones",
+        "description": "{vacuum} solo indica números para sus habitaciones: {segments}. Para asignarlas a tus áreas de Home Assistant, primero necesitan un nombre.\n\n1. Pon nombre a las habitaciones en la app de la aspiradora (Valetudo: interfaz web → mapa → editar segmentos).\n2. Asígnalas en Home Assistant: entidad de la aspiradora → ajustes → asignar áreas a segmentos.\n3. Elige aquí **Comprobar de nuevo**.",
         "menu_options": {
           "recheck": "Comprobar de nuevo",
-          "use_script": "Usar en su lugar un script propio por habitación"
+          "use_script": "Usar en su lugar un script por habitación"
         }
       }
     },

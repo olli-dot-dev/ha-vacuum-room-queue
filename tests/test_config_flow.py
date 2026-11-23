@@ -132,10 +132,10 @@ async def test_flow_explains_missing_mapping(
     mapping = er.async_get(hass).async_get(VACUUM).options["vacuum"]
     _clear_mapping(hass)
 
-    async def segments_unnamed(hass: HomeAssistant, entity_id: str) -> bool:
-        return unnamed
+    async def unnamed_segments(hass: HomeAssistant, entity_id: str) -> list[str]:
+        return ["1", "2"] if unnamed else []
 
-    monkeypatch.setattr(config_flow, "async_segments_unnamed", segments_unnamed)
+    monkeypatch.setattr(config_flow, "async_unnamed_segments", unnamed_segments)
     result = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": SOURCE_USER}
     )
@@ -145,7 +145,9 @@ async def test_flow_explains_missing_mapping(
     assert result["type"] is FlowResultType.MENU
     assert result["step_id"] == step
     assert result["menu_options"] == ["recheck", "use_script"]
-    assert result["description_placeholders"] == {"vacuum": "Robot"}
+    assert result["description_placeholders"] == (
+        {"vacuum": "Robot", "segments": "1, 2"} if unnamed else {"vacuum": "Robot"}
+    )
 
     # Still not mapped: the hint stays.
     result = await hass.config_entries.flow.async_configure(
